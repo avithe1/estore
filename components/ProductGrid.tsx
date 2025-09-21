@@ -1,15 +1,12 @@
 import type { Product } from "@/lib/products";
 import React from "react";
-import AddToCartButton from "./AddToCartButton";
+import ProductCard from "./ProductCard";
 
 const ProductGrid = ({ products }: { products: Product[] }) => {
   return (
     <div className="flex flex-col">
       {products.map((product) => (
-        <div key={product.id} className="p-3">
-          {product.title}{" "}
-          <AddToCartButton product={product}>Add</AddToCartButton>
-        </div>
+        <ProductCard key={product.id} product={product} />
       ))}
     </div>
   );

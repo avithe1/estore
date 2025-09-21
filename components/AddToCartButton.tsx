@@ -1,6 +1,6 @@
 "use client";
 import React, { PropsWithChildren } from "react";
-import { addToCart, removeFromCart } from "@/lib/redux/features/cart/cartSlice";
+import { addToCart } from "@/lib/redux/features/cart/cartSlice";
 import { useAppSelector, useAppDispatch } from "@/lib/redux/hooks";
 import type { Product } from "@/lib/products";
 
@@ -11,7 +11,7 @@ type Props = PropsWithChildren<{
 const AddToCartButton = ({ product, children }: Props) => {
   const dispatch = useAppDispatch();
   return (
-    <button onClick={() => dispatch(addToCart(product))}>{children}</button>
+    <button className="cursor-pointer" onClick={() => dispatch(addToCart(product))}>{children}</button>
   );
 };
 

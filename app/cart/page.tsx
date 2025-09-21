@@ -6,6 +6,10 @@ import Link from "next/link";
 
 export default function Cart() {
   const cartItems = useAppSelector((state) => state.cart.products);
-  console.log(cartItems);
+
+  if (cartItems.length === 0) {
+    return <div>Your cart is empty</div>;
+  }
+
   return <ProductGrid products={cartItems} />;
 }
