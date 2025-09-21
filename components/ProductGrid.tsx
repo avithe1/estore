@@ -5,9 +5,11 @@ import ProductCard from "./ProductCard";
 const ProductGrid = ({ products }: { products: Product[] }) => {
   return (
     <div className="flex flex-col">
-      {products.map((product) => (
-        <ProductCard key={product.id} product={product} />
-      ))}
+      {products.length
+        ? products.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))
+        : "No products available"}
     </div>
   );
 };

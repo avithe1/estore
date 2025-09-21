@@ -1,24 +1,32 @@
-//"use client";
-//import { addToCart, removeFromCart } from "@/lib/redux/features/cart/cartSlice";
-//import { useAppSelector, useAppDispatch } from "@/lib/redux/hooks";
-
 import ProductGrid from "@/components/ProductGrid";
 import { getProducts, Product } from "@/lib/products";
+import { Suspense } from "react";
+
+async function Products() {
+  let error: Error | unknown;
+  let products: Product[] = [];
+
+  try {
+    products = await getProducts();
+  } catch (e) {
+    error = e;
+  }
+
+  if (error) {
+    if (error instanceof Error) {
+      return <div>Error : {error.message}</div>;
+    } else {
+      return <div>Error : Unknown error</div>;
+    }
+  }
+
+  return <ProductGrid products={products} />;
+}
 
 export default async function Home() {
-  const products: Product[] = await getProducts();
-  //console.log(products);
-  return <ProductGrid products={products} />;
-  // const cartItems = useAppSelector((state) => state.cart.products);
-  // const dispatch = useAppDispatch();
-  // console.log("cart Items : ", cartItems);
-  // return (
-  //   <div className="">
-  //     {cartItems.map((item, index) => (
-  //       <div key={index}>{item}</div>
-  //     ))}
-  //     <button onClick={() => dispatch(addToCart())}>Add</button>
-  //     <button onClick={() => dispatch(removeFromCart())}>Remove</button>
-  //   </div>
-  // );
+  return (
+    <Suspense fallback="Loading products...">
+      <Products />
+    </Suspense>
+  );
 }
