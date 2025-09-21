@@ -7,8 +7,8 @@ export type Product = {
   price: number;
   description: string;
   images: string[];
-  creationAt: Date;
-  updatedAt: Date;
+  creationAt: string;
+  updatedAt: string;
   category: Category;
 };
 
@@ -17,27 +17,13 @@ export type Category = {
   name: string;
   slug: string;
   image: string;
-  creationAt: Date;
-  updatedAt: Date;
-};
-
-type ProductCategoryAPIResponse = Omit<Category, "creationAt" | "updatedAt"> & {
   creationAt: string;
   updatedAt: string;
 };
 
-type ProductAPIResponse = Omit<
-  Product,
-  "category" | "creationAt" | "updatedAt"
-> & {
-  creationAt: string;
-  updatedAt: string;
-} & {
-  category: Omit<Category, "creationAt" | "updatedAt"> & {
-    creationAt: string;
-    updatedAt: string;
-  };
-};
+type ProductCategoryAPIResponse = Category;
+
+type ProductAPIResponse = Product;
 
 function isString(value: unknown): value is string {
   return typeof value === "string";
@@ -51,8 +37,9 @@ function isStringArray(value: unknown): value is string[] {
   return Array.isArray(value) && value.every(isString);
 }
 
-function isValidDate(dateString: string): boolean {
-  return !isNaN(Date.parse(dateString));
+function isValidDateString(dateString: string): boolean {
+  const date = new Date(dateString);
+  return !isNaN(date.getTime()) && date.toISOString() === dateString;
 }
 
 function validateProductCategory(
@@ -69,8 +56,8 @@ function validateProductCategory(
     isString(obj.image) &&
     isString(obj.creationAt) &&
     isString(obj.updatedAt) &&
-    isValidDate(obj.creationAt) &&
-    isValidDate(obj.updatedAt)
+    isValidDateString(obj.creationAt) &&
+    isValidDateString(obj.updatedAt)
   );
 }
 
@@ -88,27 +75,14 @@ function validateProduct(data: unknown): boolean {
     isStringArray(obj.images) &&
     isString(obj.creationAt) &&
     isString(obj.updatedAt) &&
-    isValidDate(obj.creationAt) &&
-    isValidDate(obj.updatedAt) &&
+    isValidDateString(obj.creationAt) &&
+    isValidDateString(obj.updatedAt) &&
     validateProductCategory(obj.category)
   );
 }
 
 function validateProductResponse(data: unknown): data is ProductAPIResponse[] {
   return Array.isArray(data) && data.every(validateProduct);
-}
-
-function transformProduct(apiProduct: ProductAPIResponse): Product {
-  return {
-    ...apiProduct,
-    creationAt: new Date(apiProduct.creationAt),
-    updatedAt: new Date(apiProduct.updatedAt),
-    category: {
-      ...apiProduct.category,
-      creationAt: new Date(apiProduct.category.creationAt),
-      updatedAt: new Date(apiProduct.category.updatedAt),
-    },
-  };
 }
 
 export const getProducts = async (): Promise<Product[]> => {
@@ -129,7 +103,7 @@ export const getProducts = async (): Promise<Product[]> => {
       throw new Error("Invalid data");
     }
 
-    return jsonData.map(transformProduct);
+    return jsonData;
   } catch (error) {
     if (error instanceof Error) {
       throw error;
