@@ -7,7 +7,7 @@ type Props = {
 };
 
 const ProductDetail = async (params: { id: number }) => {
-  let product: ProductWithoutCategory | null;
+  let product: ProductWithoutCategory | null = null;
   let error: string = "";
   try {
     error = "";
@@ -20,7 +20,11 @@ const ProductDetail = async (params: { id: number }) => {
     }
   }
 
-  return <div>{product?.title}</div>;
+  return (
+    <div className="w-full min-h-screen flex justify-center">
+      <h1 className="mt-5 text-2xl font-bold">{product?.title}</h1>
+    </div>
+  );
 };
 
 const ProductDetailPage = async ({ params }: Props) => {
@@ -28,7 +32,13 @@ const ProductDetailPage = async ({ params }: Props) => {
   return (
     <div>
       <Link href="/">Back</Link>
-      <Suspense fallback="Loading product...">
+      <Suspense
+        fallback={
+          <div className="w-full min-h-screen flex items-center justify-center">
+            Loading product...
+          </div>
+        }
+      >
         <ProductDetail id={id} />
       </Suspense>
     </div>

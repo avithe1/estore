@@ -25,7 +25,13 @@ async function Products() {
 
 export default async function Home() {
   return (
-    <Suspense fallback="Loading products...">
+    <Suspense
+      fallback={
+        <div className="w-full min-h-screen flex items-center justify-center">
+          Loading products...
+        </div>
+      }
+    >
       <Products />
     </Suspense>
   );
