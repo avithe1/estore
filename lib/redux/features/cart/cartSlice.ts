@@ -22,7 +22,6 @@ export const cartSlice = createSlice({
       let newArr = [];
 
       if (state.products.length) {
-        console.log("1");
         let newItem = true;
         for (let item of state.products) {
           if (item.id === action.payload.id) {
@@ -32,12 +31,8 @@ export const cartSlice = createSlice({
             newArr.push({ ...item });
           }
         }
-        console.log("2");
         if (newItem) {
-          console.log("is new item");
           newArr.push({ ...action.payload, quantity: 1 });
-        } else {
-          console.log("not new item");
         }
       } else {
         newArr.push({ ...action.payload, quantity: 1 });
