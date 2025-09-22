@@ -8,8 +8,8 @@ const ProductCard = ({ product }: { product: Product }) => {
   return (
     <Link href={`/product/${product.id}`}>
       <div className="p-2 border rounded border-gray-400 flex flex-col">
-        <div className="object-cover">
-          <Image src={product.images[0]} width={100} height={100} alt={product.title} />
+        <div className="relative h-[100px] w-[100px] object-">
+          <Image src={product.image} fill alt={product.title} />
         </div>
         <div>
           <h2 className="text-xl font-bold truncate flex-shrink-0">

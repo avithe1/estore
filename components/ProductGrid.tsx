@@ -4,7 +4,7 @@ import ProductCard from "./ProductCard";
 
 const ProductGrid = ({ products }: { products: Product[] }) => {
   return (
-    <div className="grid grid-cols-3 w-full gap-3">
+    <div className="grid grid-cols-3 w-full gap-3 p-5">
       {products.length
         ? products.map((product) => (
             <ProductCard key={product.id} product={product} />

@@ -1,4 +1,6 @@
-import { getProduct, ProductWithoutCategory } from "@/lib/products";
+import UpdateProduct from "@/components/UpdateProduct";
+import { getProduct, Product } from "@/lib/products";
+import Image from "next/image";
 import Link from "next/link";
 import React, { Suspense } from "react";
 
@@ -7,7 +9,7 @@ type Props = {
 };
 
 const ProductDetail = async (params: { id: number }) => {
-  let product: ProductWithoutCategory | null = null;
+  let product: Product | null = null;
   let error: string = "";
   try {
     error = "";
@@ -20,11 +22,20 @@ const ProductDetail = async (params: { id: number }) => {
     }
   }
 
-  return (
-    <div className="w-full min-h-screen flex justify-center">
-      <h1 className="mt-5 text-2xl font-bold">{product?.title}</h1>
+  if (error.length) {
+    return <p>An error occurred when fetching product.</p>;
+  }
+
+  return product ? (
+    <div className="w-full min-h-screen flex flex-col p-10 gap-3">
+      <h1 className="mt-2 text-2xl font-bold">{product.title}</h1>
+      <div className="relative h-[200px] w-[200px] object-fit">
+        <Image src={product.image} fill alt={product.title} />
+      </div>
+      {<div className="text-sm">{product.description}</div>}
+      <UpdateProduct product={product} />
     </div>
-  );
+  ) : null;
 };
 
 const ProductDetailPage = async ({ params }: Props) => {

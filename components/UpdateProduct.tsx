@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { useAppSelector } from "@/lib/redux/hooks";
 import { CartItem, Product } from "@/lib/products";
 import AddToCartButton from "./AddToCartButton";
-import RemoveFromCart from "./RemoveFromCartButton";
 import {
   addToCart,
   removeFromCart,
@@ -18,9 +17,13 @@ const UpdateProduct = ({ product }: { product: Product }) => {
   const isProductInCart = filteredCartArray.length > 0;
   let cartItem: CartItem | null = null;
   const dispatch = useAppDispatch();
+  console.log("Update product");
 
   if (isProductInCart) {
     cartItem = filteredCartArray[0];
+    console.log("Product is in cart");
+  } else {
+    console.log("Product is NOT in cart");
   }
 
   useEffect(() => {
@@ -45,9 +48,9 @@ const UpdateProduct = ({ product }: { product: Product }) => {
         <div className="flex gap-2 items-center">
           <div
             className="cursor-pointer border border-gray-600 px-2  rounded"
-            onClick={() => dispatch(addToCart(product))}
+            onClick={() => dispatch(removeFromCart(product))}
           >
-            +
+            -
           </div>
           <div>
             <input
@@ -69,9 +72,9 @@ const UpdateProduct = ({ product }: { product: Product }) => {
           </div>
           <div
             className="cursor-pointer border border-gray-600 px-2  rounded"
-            onClick={() => dispatch(removeFromCart(product))}
+            onClick={() => dispatch(addToCart(product))}
           >
-            -
+            +
           </div>
         </div>
       )}

@@ -1,34 +1,19 @@
-const BASE_URL = "https://api.escuelajs.co/api/v1/";
+const BASE_URL = "https://fakestoreapi.com/";
 
 export type Product = {
   id: number;
   title: string;
-  slug: string;
   price: number;
   description: string;
-  images: string[];
-  creationAt: string;
-  updatedAt: string;
-  category: Category;
+  image: string;
+  category: string;
 };
 
 export type CartItem = Product & {
   quantity: number;
 };
 
-export type Category = {
-  id: number;
-  name: string;
-  slug: string;
-  image: string;
-  creationAt: string;
-  updatedAt: string;
-};
-
-type ProductCategoryAPIResponse = Category;
-
 type ProductAPIResponse = Product;
-export type ProductWithoutCategory = Omit<Product, "category">;
 
 function isString(value: unknown): value is string {
   return typeof value === "string";
@@ -47,66 +32,38 @@ function isValidDateString(dateString: string): boolean {
   return !isNaN(date.getTime()) && date.toISOString() === dateString;
 }
 
-function validateProductCategory(
-  data: unknown
-): data is ProductCategoryAPIResponse {
-  if (typeof data !== "object" && data === null) return false;
+// function validateProduct(data: unknown): boolean {
+//   if (data !== "object" && data === null) return false;
+
+//   const obj = data as Record<string, unknown>;
+
+//   return (
+//     isNumber(obj.id) &&
+//     isString(obj.title) &&
+//     isNumber(obj.price) &&
+//     isString(obj.description) &&
+//     isString(obj.image) &&
+//     isString(obj.category)
+//   );
+// }
+
+function validateProductResponse(data: unknown): data is Product {
+  if (data !== "object" && data === null) return false;
 
   const obj = data as Record<string, unknown>;
 
   return (
     isNumber(obj.id) &&
-    isString(obj.name) &&
-    isString(obj.slug) &&
+    isString(obj.title) &&
+    isNumber(obj.price) &&
+    isString(obj.description) &&
     isString(obj.image) &&
-    isString(obj.creationAt) &&
-    isString(obj.updatedAt) &&
-    isValidDateString(obj.creationAt) &&
-    isValidDateString(obj.updatedAt)
+    isString(obj.category)
   );
 }
 
-function validateProduct(data: unknown): boolean {
-  if (data !== "object" && data === null) return false;
-
-  const obj = data as Record<string, unknown>;
-
-  return (
-    isNumber(obj.id) &&
-    isString(obj.title) &&
-    isString(obj.slug) &&
-    isNumber(obj.price) &&
-    isString(obj.description) &&
-    isStringArray(obj.images) &&
-    isString(obj.creationAt) &&
-    isString(obj.updatedAt) &&
-    isValidDateString(obj.creationAt) &&
-    isValidDateString(obj.updatedAt) &&
-    validateProductCategory(obj.category)
-  );
-}
-
-function validateProductWithoutCategoryAPIResponse(data: unknown): data is ProductWithoutCategory {
-  if (data !== "object" && data === null) return false;
-
-  const obj = data as Record<string, unknown>;
-
-  return (
-    isNumber(obj.id) &&
-    isString(obj.title) &&
-    isString(obj.slug) &&
-    isNumber(obj.price) &&
-    isString(obj.description) &&
-    isStringArray(obj.images) &&
-    isString(obj.creationAt) &&
-    isString(obj.updatedAt) &&
-    isValidDateString(obj.creationAt) &&
-    isValidDateString(obj.updatedAt)
-  );
-}
-
-function validateProductResponse(data: unknown): data is ProductAPIResponse[] {
-  return Array.isArray(data) && data.every(validateProduct);
+function validateProductsResponse(data: unknown): data is ProductAPIResponse[] {
+  return Array.isArray(data) && data.every(validateProductResponse);
 }
 
 export const getProducts = async (): Promise<Product[]> => {
@@ -123,7 +80,7 @@ export const getProducts = async (): Promise<Product[]> => {
       throw new Error("JSON error. Invalid data format");
     }
 
-    if (!validateProductResponse(jsonData)) {
+    if (!validateProductsResponse(jsonData)) {
       throw new Error("Invalid products data");
     }
 
@@ -137,9 +94,7 @@ export const getProducts = async (): Promise<Product[]> => {
   }
 };
 
-export const getProduct = async (
-  id: number
-): Promise<ProductWithoutCategory> => {
+export const getProduct = async (id: number): Promise<Product> => {
   try {
     const response = await fetch(BASE_URL + "products/" + id.toString());
     if (!response.ok) {
@@ -153,9 +108,9 @@ export const getProduct = async (
       throw new Error("JSON error. Invalid data format");
     }
 
-    if (!validateProductWithoutCategoryAPIResponse(jsonData)) {
+    if (!validateProductResponse(jsonData)) {
       throw new Error("Invalid product data");
-    } 
+    }
 
     return jsonData;
   } catch (e) {
