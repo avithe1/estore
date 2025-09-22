@@ -28,6 +28,7 @@ export type Category = {
 type ProductCategoryAPIResponse = Category;
 
 type ProductAPIResponse = Product;
+export type ProductWithoutCategory = Omit<Product, "category">;
 
 function isString(value: unknown): value is string {
   return typeof value === "string";
@@ -85,6 +86,25 @@ function validateProduct(data: unknown): boolean {
   );
 }
 
+function validateProductWithoutCategoryAPIResponse(data: unknown): data is ProductWithoutCategory {
+  if (data !== "object" && data === null) return false;
+
+  const obj = data as Record<string, unknown>;
+
+  return (
+    isNumber(obj.id) &&
+    isString(obj.title) &&
+    isString(obj.slug) &&
+    isNumber(obj.price) &&
+    isString(obj.description) &&
+    isStringArray(obj.images) &&
+    isString(obj.creationAt) &&
+    isString(obj.updatedAt) &&
+    isValidDateString(obj.creationAt) &&
+    isValidDateString(obj.updatedAt)
+  );
+}
+
 function validateProductResponse(data: unknown): data is ProductAPIResponse[] {
   return Array.isArray(data) && data.every(validateProduct);
 }
@@ -100,11 +120,11 @@ export const getProducts = async (): Promise<Product[]> => {
     try {
       jsonData = await response.json();
     } catch (error) {
-      throw new Error("Corrupted JSON");
+      throw new Error("JSON error. Invalid data format");
     }
 
     if (!validateProductResponse(jsonData)) {
-      throw new Error("Invalid data");
+      throw new Error("Invalid products data");
     }
 
     return jsonData;
@@ -114,5 +134,31 @@ export const getProducts = async (): Promise<Product[]> => {
     } else {
       throw new Error("Unknown error");
     }
+  }
+};
+
+export const getProduct = async (
+  id: number
+): Promise<ProductWithoutCategory> => {
+  try {
+    const response = await fetch(BASE_URL + "products/" + id.toString());
+    if (!response.ok) {
+      throw new Error("HTTP error. Failed to fetch product, try again later");
+    }
+
+    let jsonData: unknown;
+    try {
+      jsonData = await response.json();
+    } catch (e) {
+      throw new Error("JSON error. Invalid data format");
+    }
+
+    if (!validateProductWithoutCategoryAPIResponse(jsonData)) {
+      throw new Error("Invalid product data");
+    } 
+
+    return jsonData;
+  } catch (e) {
+    throw e;
   }
 };
