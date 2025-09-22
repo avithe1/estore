@@ -21,7 +21,6 @@ const UpdateProduct = ({ product }: { product: Product }) => {
 
   if (isProductInCart) {
     cartItem = filteredCartArray[0];
-    console.log(cartItem);
   }
 
   useEffect(() => {
