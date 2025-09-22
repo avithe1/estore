@@ -23,7 +23,8 @@ export const cartSlice = createSlice({
         (product) => product.id === action.payload.id
       );
       if (items.length) {
-        console.log("add");
+        //product is already in the cart
+        console.log("add to existing");
 
         const restoftheitems = state.products.filter(
           (product) => product.id !== action.payload.id
@@ -61,9 +62,11 @@ export const cartSlice = createSlice({
         console.log("remove");
         const item = items[0];
         if (item.quantity == 1) {
-          state.products = state.products.filter(
-            (product) => product.id !== action.payload.id
-          );
+          state.products = [
+            ...state.products.filter(
+              (product) => product.id !== action.payload.id
+            ),
+          ];
         } else {
           const restoftheitems = state.products.filter(
             (product) => product.id !== action.payload.id

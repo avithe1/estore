@@ -14,26 +14,29 @@ import { useAppDispatch } from "@/lib/redux/hooks";
 const UpdateProduct = ({ product }: { product: Product }) => {
   const cartItems = useAppSelector((state) => state.cart.products);
   const filteredCartArray = cartItems.filter((item) => item.id === product.id);
+  const [productQuantity, setProductQuantity] = useState(0);
   const isProductInCart = filteredCartArray.length > 0;
   let cartItem: CartItem | null = null;
   const dispatch = useAppDispatch();
 
   if (isProductInCart) {
     cartItem = filteredCartArray[0];
-    //setProductQuantity(cartItem.quantity);
+    console.log(cartItem);
   }
-  const [productQuantity, setProductQuantity] = useState(
-    cartItem?.quantity || 0
-  );
 
-  // useEffect(() => {
-  //   dispatch(
-  //     updateProductQuantity({
-  //       id: product.id,
-  //       quantity: productQuantity,
-  //     })
-  //   );
-  // }, [productQuantity]);
+  useEffect(() => {
+    if (cartItems.length) {
+      const fA = cartItems.filter((item) => item.id === product.id);
+      if (fA.length) {
+        let q = fA[0].quantity;
+        setProductQuantity(q);
+      } else {
+        setProductQuantity(0);
+      }
+    } else {
+      setProductQuantity(0);
+    }
+  }, [cartItems]);
 
   return (
     <div>
@@ -42,13 +45,16 @@ const UpdateProduct = ({ product }: { product: Product }) => {
       ) : (
         <div className="flex gap-2 items-center">
           <div
-            className="cursor-pointer"
+            className="cursor-pointer border border-gray-600 px-2  rounded"
             onClick={() => dispatch(addToCart(product))}
           >
             +
           </div>
           <div>
             <input
+              max={10}
+              min={0}
+              style={{ width: "5ch" }}
               type="number"
               value={productQuantity}
               onChange={(e) => {
@@ -63,7 +69,7 @@ const UpdateProduct = ({ product }: { product: Product }) => {
             />
           </div>
           <div
-            className="cursor-pointer"
+            className="cursor-pointer border border-gray-600 px-2  rounded"
             onClick={() => dispatch(removeFromCart(product))}
           >
             -
