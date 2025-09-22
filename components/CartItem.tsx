@@ -19,7 +19,7 @@ const CartItem = ({ product }: { product: Product }) => {
       </div>
       <div className="flex flex-col gap-4 border-l border-gray-700 px-3">
         <div>Price : {product.price} per item</div>
-        <div className="self-center"><UpdateProduct product={product} /></div>
+        <div className="self-end"><UpdateProduct product={product} /></div>
       </div>
     </div>
   );

@@ -9,6 +9,7 @@ import {
   updateProductQuantity,
 } from "@/lib/redux/features/cart/cartSlice";
 import { useAppDispatch } from "@/lib/redux/hooks";
+import { Trash2 } from "lucide-react";
 
 const UpdateProduct = ({ product }: { product: Product }) => {
   const cartItems = useAppSelector((state) => state.cart.products);
@@ -42,12 +43,22 @@ const UpdateProduct = ({ product }: { product: Product }) => {
         <AddToCartButton product={product}>Add to cart</AddToCartButton>
       ) : (
         <div className="flex gap-2 items-center">
-          <div
-            className="cursor-pointer border border-gray-600 px-2  rounded"
-            onClick={() => dispatch(removeFromCart(product))}
-          >
-            -
-          </div>
+          {productQuantity === 1 ? (
+            <div
+              className="cursor-pointer"
+              onClick={() => dispatch(removeFromCart(product))}
+            >
+              <Trash2 color="red" />
+            </div>
+          ) : (
+            <div
+              className="cursor-pointer border border-gray-600 px-2  rounded"
+              onClick={() => dispatch(removeFromCart(product))}
+            >
+              -
+            </div>
+          )}
+
           <div>
             <input
               max={10}
