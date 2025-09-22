@@ -4,4 +4,14 @@ const nextConfig: NextConfig = {
   /* config options here */
 };
 
+module.exports = {
+  images: {
+    remotePatterns: [
+      new URL("https://i.imgur.com/**"),
+      new URL("https://picsum.photos/**"),
+      new URL("https://example.com/**"),
+    ],
+  },
+};
+
 export default nextConfig;

@@ -2,14 +2,22 @@ import type { Product } from "@/lib/products";
 import React from "react";
 import UpdateProduct from "./UpdateProduct";
 import Link from "next/link";
+import Image from "next/image";
 
 const ProductCard = ({ product }: { product: Product }) => {
   return (
     <Link href={`/product/${product.id}`}>
-      <div className="p-5 border rounded border-gray-400 flex justify-between">
-        <div>{product.title}</div>
+      <div className="p-2 border rounded border-gray-400 flex flex-col">
+        <div className="object-cover">
+          <Image src={product.images[0]} width={100} height={100} alt={product.title} />
+        </div>
         <div>
-          <UpdateProduct product={product} />
+          <h2 className="text-xl font-bold truncate flex-shrink-0">
+            {product.title}
+          </h2>
+        </div>
+        <div className="text-sm mt-2 flex-1 overflow-hidden line-clamp-3">
+          {product.description}
         </div>
       </div>
     </Link>
