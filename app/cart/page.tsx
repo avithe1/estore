@@ -1,8 +1,6 @@
 "use client";
 import CartItems from "@/components/CartItems";
-//import { addToCart, removeFromCart } from "@/lib/redux/features/cart/cartSlice";
 import { useAppSelector } from "@/lib/redux/hooks";
-import Link from "next/link";
 
 export default function Cart() {
   const cartItems = useAppSelector((state) => state.cart.products);
@@ -14,7 +12,7 @@ export default function Cart() {
       </div>
     );
   } else {
-    for (let item of cartItems) {
+    for (const item of cartItems) {
       totalPrice += item.price * item.quantity;
     }
   }

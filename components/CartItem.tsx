@@ -1,7 +1,6 @@
 import type { Product } from "@/lib/products";
 import React from "react";
 import UpdateProduct from "./UpdateProduct";
-import Link from "next/link";
 import Image from "next/image";
 
 const CartItem = ({ product }: { product: Product }) => {

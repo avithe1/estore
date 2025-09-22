@@ -19,11 +19,11 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action: PayloadAction<Product>) => {
-      let newArr = [];
+      const newArr = [];
 
       if (state.products.length) {
         let newItem = true;
-        for (let item of state.products) {
+        for (const item of state.products) {
           if (item.id === action.payload.id) {
             newItem = false;
             newArr.push({ ...item, quantity: item.quantity + 1 });
@@ -41,9 +41,9 @@ export const cartSlice = createSlice({
       state.products = [...newArr];
     },
     removeFromCart: (state, action: PayloadAction<{ id: number }>) => {
-      let newArr = [];
+      const newArr = [];
 
-      for (let item of state.products) {
+      for (const item of state.products) {
         if (item.id === action.payload.id) {
           if (item.quantity > 1) {
             newArr.push({ ...item, quantity: item.quantity - 1 });
@@ -59,9 +59,9 @@ export const cartSlice = createSlice({
       state,
       action: PayloadAction<{ id: number; quantity: number }>
     ) => {
-      let newArr = [];
+      const newArr = [];
 
-      for (let item of state.products) {
+      for (const item of state.products) {
         if (item.id === action.payload.id) {
           newArr.push({ ...item, quantity: action.payload.quantity });
         } else {

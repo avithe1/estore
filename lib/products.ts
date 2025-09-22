@@ -23,14 +23,14 @@ function isNumber(value: unknown): value is number {
   return typeof value === "number";
 }
 
-function isStringArray(value: unknown): value is string[] {
-  return Array.isArray(value) && value.every(isString);
-}
+// function isStringArray(value: unknown): value is string[] {
+//   return Array.isArray(value) && value.every(isString);
+// }
 
-function isValidDateString(dateString: string): boolean {
-  const date = new Date(dateString);
-  return !isNaN(date.getTime()) && date.toISOString() === dateString;
-}
+// function isValidDateString(dateString: string): boolean {
+//   const date = new Date(dateString);
+//   return !isNaN(date.getTime()) && date.toISOString() === dateString;
+// }
 
 // function validateProduct(data: unknown): boolean {
 //   if (data !== "object" && data === null) return false;
@@ -77,7 +77,11 @@ export const getProducts = async (): Promise<Product[]> => {
     try {
       jsonData = await response.json();
     } catch (error) {
-      throw new Error("JSON error. Invalid data format");
+      throw new Error(
+        error instanceof Error
+          ? error.message
+          : "JSON error. Invalid data format"
+      );
     }
 
     if (!validateProductsResponse(jsonData)) {
@@ -105,7 +109,9 @@ export const getProduct = async (id: number): Promise<Product> => {
     try {
       jsonData = await response.json();
     } catch (e) {
-      throw new Error("JSON error. Invalid data format");
+      throw new Error(
+        e instanceof Error ? e.message : "JSON error. Invalid data format"
+      );
     }
 
     if (!validateProductResponse(jsonData)) {

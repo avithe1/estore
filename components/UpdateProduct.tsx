@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { useAppSelector } from "@/lib/redux/hooks";
-import { CartItem, Product } from "@/lib/products";
+import { Product } from "@/lib/products";
 import AddToCartButton from "./AddToCartButton";
 import {
   addToCart,
@@ -16,26 +16,25 @@ const UpdateProduct = ({ product }: { product: Product }) => {
   const filteredCartArray = cartItems.filter((item) => item.id === product.id);
   const [productQuantity, setProductQuantity] = useState(0);
   const isProductInCart = filteredCartArray.length > 0;
-  let cartItem: CartItem | null = null;
+  //let cartItem: CartItem | null = null;
   const dispatch = useAppDispatch();
 
-  if (isProductInCart) {
-    cartItem = filteredCartArray[0];
-  }
+  // if (isProductInCart) {
+  //   cartItem = filteredCartArray[0];
+  // }
 
   useEffect(() => {
     if (cartItems.length) {
       const fA = cartItems.filter((item) => item.id === product.id);
       if (fA.length) {
-        let q = fA[0].quantity;
-        setProductQuantity(q);
+        setProductQuantity(fA[0].quantity);
       } else {
         setProductQuantity(0);
       }
     } else {
       setProductQuantity(0);
     }
-  }, [cartItems]);
+  }, [cartItems, product.id]);
 
   return (
     <div>
