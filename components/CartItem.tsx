@@ -9,7 +9,7 @@ const CartItem = ({ product }: { product: Product }) => {
     <div className="p-2 border rounded border-gray-400 flex justify-between items-center">
       <div className="flex gap-2 items-center">
         <div className="relative h-[100px] w-[100px] object-">
-          <Image src={product.image} fill alt={product.title} />
+          <Image src={product.image} sizes="100%" fill alt={product.title} />
         </div>
         <div>
           <h2 className="text-xl font-bold truncate flex-shrink-0">
