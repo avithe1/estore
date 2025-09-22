@@ -1,13 +1,13 @@
 import type { Product } from "@/lib/products";
 import React from "react";
-import UpdateProduct from "./UpdateProduct";
 import Link from "next/link";
 import Image from "next/image";
+import InCartItemNotification from "./InCartItemNotification";
 
 const ProductCard = ({ product }: { product: Product }) => {
   return (
     <Link href={`/product/${product.id}`}>
-      <div className="p-2 border rounded border-gray-400 flex flex-col">
+      <div className="p-2 border rounded border-gray-400 flex flex-col relative">
         <div className="relative h-[100px] w-[100px] object-fill">
           <Image src={product.image} fill alt={product.title} />
         </div>
@@ -19,6 +19,7 @@ const ProductCard = ({ product }: { product: Product }) => {
         <div className="text-sm mt-2 flex-1 overflow-hidden line-clamp-3">
           {product.description}
         </div>
+        <InCartItemNotification product={product} />
       </div>
     </Link>
   );
