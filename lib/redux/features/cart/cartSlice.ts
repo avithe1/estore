@@ -19,91 +19,62 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action: PayloadAction<Product>) => {
-      let items = state.products.filter(
-        (product) => product.id === action.payload.id
-      );
-      if (items.length) {
-        //product is already in the cart
+      let newArr = [];
 
-        const restoftheitems = state.products.filter(
-          (product) => product.id !== action.payload.id
-        );
-
-        if (restoftheitems.length) {
-          const newArr = [
-            ...restoftheitems,
-            {
-              ...items[0],
-              quantity: items[0].quantity + 1,
-            },
-          ];
-          state.products = [...newArr];
-        } else {
-          const newArr = [
-            {
-              ...items[0],
-              quantity: items[0].quantity + 1,
-            },
-          ];
-          state.products = [...newArr];
-        }
-      } else {
-        state.products.push({ ...action.payload, quantity: 1 });
-      }
-    },
-    removeFromCart: (state, action: PayloadAction<{ id: number }>) => {
-      let items = state.products.filter(
-        (product) => product.id === action.payload.id
-      );
-      if (items.length) {
-        const item = items[0];
-        if (item.quantity == 1) {
-          state.products = [
-            ...state.products.filter(
-              (product) => product.id !== action.payload.id
-            ),
-          ];
-        } else {
-          const restoftheitems = state.products.filter(
-            (product) => product.id !== action.payload.id
-          );
-
-          if (restoftheitems.length) {
-            const newArr = [
-              ...restoftheitems,
-              {
-                ...items[0],
-                quantity: items[0].quantity - 1,
-              },
-            ];
-            state.products = [...newArr];
+      if (state.products.length) {
+        console.log("1");
+        let newItem = true;
+        for (let item of state.products) {
+          if (item.id === action.payload.id) {
+            newItem = false;
+            newArr.push({ ...item, quantity: item.quantity + 1 });
           } else {
-            const newArr = [
-              {
-                ...items[0],
-                quantity: items[0].quantity - 1,
-              },
-            ];
-            state.products = [...newArr];
+            newArr.push({ ...item });
           }
         }
+        console.log("2");
+        if (newItem) {
+          console.log("is new item");
+          newArr.push({ ...action.payload, quantity: 1 });
+        } else {
+          console.log("not new item");
+        }
+      } else {
+        newArr.push({ ...action.payload, quantity: 1 });
       }
+
+      state.products = [...newArr];
+    },
+    removeFromCart: (state, action: PayloadAction<{ id: number }>) => {
+      let newArr = [];
+
+      for (let item of state.products) {
+        if (item.id === action.payload.id) {
+          if (item.quantity > 1) {
+            newArr.push({ ...item, quantity: item.quantity - 1 });
+          }
+        } else {
+          newArr.push({ ...item });
+        }
+      }
+
+      state.products = [...newArr];
     },
     updateProductQuantity: (
       state,
       action: PayloadAction<{ id: number; quantity: number }>
     ) => {
-      const cartItem = state.products.filter(
-        (product) => product.id !== action.payload.id
-      )[0];
+      let newArr = [];
 
-      state.products = [
-        ...state.products,
-        {
-          ...cartItem,
-          quantity: action.payload.quantity,
-        },
-      ];
+      for (let item of state.products) {
+        if (item.id === action.payload.id) {
+          newArr.push({ ...item, quantity: action.payload.quantity });
+        } else {
+          newArr.push({ ...item });
+        }
+      }
+
+      state.products = [...newArr];
     },
   },
 });

@@ -17,13 +17,9 @@ const UpdateProduct = ({ product }: { product: Product }) => {
   const isProductInCart = filteredCartArray.length > 0;
   let cartItem: CartItem | null = null;
   const dispatch = useAppDispatch();
-  console.log("Update product");
 
   if (isProductInCart) {
     cartItem = filteredCartArray[0];
-    console.log("Product is in cart");
-  } else {
-    console.log("Product is NOT in cart");
   }
 
   useEffect(() => {
