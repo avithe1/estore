@@ -30,7 +30,7 @@ const ProductDetail = async (params: { id: number }) => {
     <div className="w-full min-h-screen flex flex-col p-10 gap-3">
       <h1 className="mt-2 text-2xl font-bold">{product.title}</h1>
       <div className="relative h-[200px] w-[200px] object-fit">
-        <Image src={product.image} fill alt={product.title} />
+        <Image src={product.image} fill sizes="100%" alt={product.title} />
       </div>
       {<div className="text-sm">{product.description}</div>}
       <UpdateProduct product={product} />

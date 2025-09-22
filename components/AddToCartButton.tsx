@@ -11,7 +11,12 @@ type Props = PropsWithChildren<{
 const AddToCartButton = ({ product, children }: Props) => {
   const dispatch = useAppDispatch();
   return (
-    <button className="cursor-pointer" onClick={() => dispatch(addToCart(product))}>{children}</button>
+    <button
+      className="cursor-pointer border border-white rounded bg-gray-700 px-2 py-1 hover:bg-gray-400 hover:text-black hover:border-gray-400"
+      onClick={() => dispatch(addToCart(product))}
+    >
+      {children}
+    </button>
   );
 };
 

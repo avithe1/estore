@@ -8,7 +8,11 @@ export default function Cart() {
   const cartItems = useAppSelector((state) => state.cart.products);
   let totalPrice = 0;
   if (cartItems.length === 0) {
-    return <div>Your cart is empty</div>;
+    return (
+      <div className="w-full min-h-screen flex justify-center items-center">
+        Your cart is empty
+      </div>
+    );
   } else {
     for (let item of cartItems) {
       totalPrice += item.price * item.quantity;
@@ -18,7 +22,9 @@ export default function Cart() {
   return (
     <div className="w-full">
       <CartItems products={cartItems} />
-      <h3 className="text-right mr-10 text-2xl font-bold">Total Price : {totalPrice.toFixed(2)}</h3>
+      <h3 className="text-right mr-10 text-2xl font-bold">
+        Total Price : {totalPrice.toFixed(2)}
+      </h3>
     </div>
   );
 }
