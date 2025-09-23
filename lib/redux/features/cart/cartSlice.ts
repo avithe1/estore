@@ -63,7 +63,9 @@ export const cartSlice = createSlice({
 
       for (const item of state.products) {
         if (item.id === action.payload.id) {
-          newArr.push({ ...item, quantity: action.payload.quantity });
+          if (action.payload.quantity > 0) {
+            newArr.push({ ...item, quantity: action.payload.quantity });
+          }
         } else {
           newArr.push({ ...item });
         }

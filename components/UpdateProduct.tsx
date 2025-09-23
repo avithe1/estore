@@ -16,12 +16,7 @@ const UpdateProduct = ({ product }: { product: Product }) => {
   const filteredCartArray = cartItems.filter((item) => item.id === product.id);
   const [productQuantity, setProductQuantity] = useState(0);
   const isProductInCart = filteredCartArray.length > 0;
-  //let cartItem: CartItem | null = null;
   const dispatch = useAppDispatch();
-
-  // if (isProductInCart) {
-  //   cartItem = filteredCartArray[0];
-  // }
 
   useEffect(() => {
     if (cartItems.length) {
