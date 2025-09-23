@@ -100,7 +100,14 @@ export const getProducts = async (): Promise<Product[]> => {
 
 export const getProduct = async (id: number): Promise<Product> => {
   try {
-    const response = await fetch(BASE_URL + "products/" + id.toString());
+    const response = await fetch(BASE_URL + "products/" + id.toString(), {
+      //cache: "force-cache",
+      next:{
+        revalidate:3600,
+        tags:[`product-${id}`]
+      }
+    });
+
     if (!response.ok) {
       throw new Error("HTTP error. Failed to fetch product, try again later");
     }
