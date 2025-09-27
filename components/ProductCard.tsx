@@ -23,8 +23,11 @@ const ProductCard = ({ product }: { product: Product }) => {
             {product.title}
           </h2>
         </div>
-        <div className="text-sm mt-2 flex-1 overflow-hidden line-clamp-3">
-          {product.description}
+        <div className="flex items-center gap-2">
+          <div className="text-sm mt-2 flex-1 overflow-hidden line-clamp-3 width-2/3">
+            {product.description}
+          </div>
+          <div className="border border-gray-600 p-2 rounded">${product.price}</div>
         </div>
         <InCartItemNotification product={product} />
       </div>
