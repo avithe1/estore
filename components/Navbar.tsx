@@ -1,5 +1,6 @@
 import NavCart from "./NavCart";
 import Link from "next/link";
+import NavSearch from "./NavSearch";
 
 export default function Navbar() {
   return (
@@ -7,7 +8,10 @@ export default function Navbar() {
       <div className="text-2xl font-bold">
         <Link href="/">E-Cart</Link>
       </div>
-      <NavCart />
+      <div className="flex gap-3 items-center">
+        <NavSearch />
+        <NavCart />
+      </div>
     </div>
   );
 }
