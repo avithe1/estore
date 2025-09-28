@@ -1,5 +1,6 @@
 import UpdateProduct from "@/components/UpdateProduct";
 import { getProduct, Product } from "@/lib/products";
+import { ChevronLeft } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React, { Suspense } from "react";
@@ -30,7 +31,14 @@ const ProductDetail = async (params: { id: number }) => {
     <div className="w-full min-h-screen flex flex-col p-10 gap-3">
       <h1 className="mt-2 text-2xl font-bold">{product.title}</h1>
       <div className="relative h-[200px] w-[200px] aspect-square overflow-hidden">
-        <Image src={product.image} fill sizes="100%" alt={product.title} priority className="h-full w-full object-contain"/>
+        <Image
+          src={product.image}
+          fill
+          sizes="100%"
+          alt={product.title}
+          priority
+          className="h-full w-full object-contain"
+        />
       </div>
       {<div className="text-sm">{product.description}</div>}
       <UpdateProduct product={product} />
@@ -42,7 +50,14 @@ const ProductDetailPage = async ({ params }: Props) => {
   const { id } = await params;
   return (
     <div>
-      <Link href="/">Back</Link>
+      <Link href="/">
+        <div className="flex items-center mt-4">
+          <div>
+            <ChevronLeft />
+          </div>{" "}
+          <div>Back</div>
+        </div>
+      </Link>
       <Suspense
         fallback={
           <div className="w-full min-h-screen flex items-center justify-center">
