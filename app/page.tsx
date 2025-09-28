@@ -1,3 +1,4 @@
+import ProductsCardSkeleton from "@/components/ProductCardsSkeleton";
 import ProductGrid from "@/components/ProductGrid";
 import { getProducts, Product } from "@/lib/products";
 import { Suspense } from "react";
@@ -25,13 +26,7 @@ async function Products() {
 
 export default async function Home() {
   return (
-    <Suspense
-      fallback={
-        <div className="w-full min-h-screen flex items-center justify-center">
-          Loading products...
-        </div>
-      }
-    >
+    <Suspense fallback={<ProductsCardSkeleton />}>
       <Products />
     </Suspense>
   );

@@ -5,7 +5,11 @@ import ProductCard from "./ProductCard";
 import { useAppSelector, useAppDispatch } from "@/lib/redux/hooks";
 import { clearSearchTerm } from "@/lib/redux/features/search/searchSlice";
 
-const ProductGrid = ({ products }: { products: Product[] }) => {
+const ProductGrid = ({
+  products,
+}: {
+  products: Product[];
+}) => {
   const [sortBy, setSortBy] = useState("");
   const { searchTerm } = useAppSelector((state) => state.search);
   const dispatch = useAppDispatch();
@@ -75,19 +79,13 @@ const ProductGrid = ({ products }: { products: Product[] }) => {
                   id="pet-select"
                   className="px-3 py-1 border border-gray-700 rounded"
                   onChange={(e) => setSortBy(e.target.value)}
+                  value={sortBy}
                 >
-                  <option value="" selected={sortBy === ""}>
-                    Select
-                  </option>
-                  <option value="title" selected={sortBy === "title"}>
-                    Title
-                  </option>
-                  <option value="price" selected={sortBy === "price"}>
-                    Price
-                  </option>
+                  <option value="">Select</option>
+                  <option value="title">Title</option>
+                  <option value="price">Price</option>
                 </select>
               </div>
-              <div>{sortBy}</div>
             </>
           ) : null}
         </div>
