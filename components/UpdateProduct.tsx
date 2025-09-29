@@ -34,26 +34,30 @@ const UpdateProduct = ({ product }: { product: Product }) => {
   return (
     <div>
       {!isProductInCart ? (
-        <AddToCartButton product={product}>Add to cart</AddToCartButton>
+        <AddToCartButton product={product} >Add to cart</AddToCartButton>
       ) : (
         <div className="flex gap-2 items-center">
           {productQuantity === 1 ? (
-            <div
-              className="cursor-pointer"
-              onClick={() => dispatch(removeFromCart(product))}
-            >
-              <Trash2 color="red" />
+            <div className="flex items-center">
+              <button
+                className="cursor-pointer"
+                onClick={() => dispatch(removeFromCart(product))}
+              >
+                <Trash2 color="red" />
+              </button>
             </div>
           ) : (
-            <div
-              className="cursor-pointer border border-gray-600 px-2  rounded"
-              onClick={() => dispatch(removeFromCart(product))}
-            >
-              -
+            <div className="flex items-center">
+              <button
+                className="cursor-pointer border border-gray-600 px-2  rounded"
+                onClick={() => dispatch(removeFromCart(product))}
+              >
+                -
+              </button>
             </div>
           )}
 
-          <div>
+          <div className="flex items-center">
             <input
               max={10}
               min={0}
@@ -71,11 +75,13 @@ const UpdateProduct = ({ product }: { product: Product }) => {
               }}
             />
           </div>
-          <div
-            className="cursor-pointer border border-gray-600 px-2  rounded"
-            onClick={() => dispatch(addToCart(product))}
-          >
-            +
+          <div className="flex items-center">
+            <button
+              className="cursor-pointer border border-gray-600 px-2  rounded"
+              onClick={() => dispatch(addToCart(product))}
+            >
+              +
+            </button>
           </div>
         </div>
       )}
