@@ -36,14 +36,10 @@ export function Modal({ children }: { children: React.ReactNode }) {
 
   const modalContent = (
     <div
-      className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4"
+      className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4"
       onClick={handleBackdropClick}
     >
-      <div
-        className="modal-content relative max-w-4xl max-h-[90vh] w-full"
-        onClick={(e) => e.stopPropagation()}
-        data-testid="modal-content"
-      >
+      <div onClick={(e) => e.stopPropagation()}>
         {children}
       </div>
     </div>
