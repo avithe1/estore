@@ -36,8 +36,10 @@ const NavSearch = () => {
         }`}
         value={search}
         onChange={(e) => setSearch(e.target.value)}
+        tabIndex={isOpen?0:-1}
       />
-      <Search
+      <button
+        aria-label="search"
         className="cursor-pointer"
         onClick={
           isOpen
@@ -47,28 +49,18 @@ const NavSearch = () => {
                 document.getElementById("myInput")?.focus();
               }
         }
-      />
-      <X
-        onClick={clear}
+      >
+        <Search />
+      </button>
+      <button
+        aria-label="close search"
         className={`${isOpen ? "block" : "hidden"} cursor-pointer`}
-      />
+        onClick={clear}
+      >
+        <X />
+      </button>
     </div>
   );
-
-  // return !isOpen ? (
-  //   <Search onClick={() => setIsOpen(true)} />
-  // ) : (
-  //   <div className="flex items-center gap-2">
-  //     <input
-  //       className="border border-gray-700 rounded w-[200px] px-2 py-0.2"
-  //       autoFocus
-  //       value={search}
-  //       onChange={(e) => setSearch(e.target.value)}
-  //     />
-  //     <Search onClick={handleSearch} />
-  //     <X onClick={clear} />
-  //   </div>
-  // );
 };
 
 export default NavSearch;

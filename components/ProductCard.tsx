@@ -7,13 +7,13 @@ import InCartItemNotification from "./InCartItemNotification";
 const ProductCard = ({ product }: { product: Product }) => {
   return (
     <Link href={`/product/${product.id}`}>
-      <div className="p-2 border rounded border-gray-400 flex flex-col relative min-h-[250px]">
-        <div className="relative aspect-square w-[70%] h-[200px] overflow-hidden">
+      <div className="p-2 border rounded border-gray-400 flex flex-col relative min-h-[250px]  hover:border-white hover:bg-gray-950">
+        <div className="relative aspect-square w-[70%] h-[200px] overflow-hidden ">
           <Image
             src={product.image}
             alt={product.title}
             fill
-            className="h-full w-full object-contain"
+            className="h-full w-full object-contain "
             sizes="100%"
             priority
           />
