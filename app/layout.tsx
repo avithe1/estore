@@ -33,7 +33,7 @@ export default function RootLayout({
           <nav>
             <Navbar />
           </nav>
-          <main>{children}</main>
+          <main className="flex w-full min-h-maincontent">{children}</main>
         </StoreProvider>
       </body>
     </html>

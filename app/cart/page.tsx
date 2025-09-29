@@ -7,8 +7,8 @@ export default function Cart() {
   let totalPrice = 0;
   if (cartItems.length === 0) {
     return (
-      <div className="w-full min-h-screen flex justify-center items-center">
-        Your cart is empty
+      <div className="flex w-full justify-center items-center">
+        <div>Your cart is empty</div>
       </div>
     );
   } else {
@@ -20,7 +20,7 @@ export default function Cart() {
   return (
     <div className="w-full">
       <CartItems products={cartItems} />
-      <h3 className="text-right mr-10 text-2xl font-bold">
+      <h3 className="text-right mr-10 text-2xl font-bold mt-3">
         Total Price : {totalPrice.toFixed(2)}
       </h3>
     </div>

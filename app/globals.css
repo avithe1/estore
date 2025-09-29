@@ -3,6 +3,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --navheight: 70px;
 }
 
 @theme inline {
@@ -10,6 +11,8 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --height-navbar: var(--navheight);
+  --height-maincontent: calc(100vh - var(--navheight));
 }
 
 @media (prefers-color-scheme: dark) {

@@ -4,12 +4,10 @@ import CartItem from "./CartItem";
 
 const CartItems = ({ products }: { products: Product[] }) => {
   return (
-    <div className="w-full flex flex-col gap-3 p-5">
-      {products.length
-        ? products.map((product) => (
-            <CartItem key={product.id} product={product} />
-          ))
-        : "No products available"}
+    <div className="mt-10 px-5">
+      {products.map((product) => (
+        <CartItem key={product.id} product={product} />
+      ))}
     </div>
   );
 };
