@@ -15,6 +15,7 @@ export default function Cart() {
     for (const item of cartItems) {
       totalPrice += item.price * item.quantity;
     }
+    //totalPrice = cartItems.reduce((price, item) => price + item.price, 0);
   }
 
   return (
