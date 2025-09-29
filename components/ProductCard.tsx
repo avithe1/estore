@@ -35,9 +35,8 @@ const ProductCard = ({ product }: { product: Product }) => {
       <InCartItemNotification product={product} />
       <div className="flex items-center justify-between py-4 ">
         <UpdateProduct product={product} />
-        {/* <div className="flex items-center"><button className="cursor-pointer"><Eye /></button></div> */}
         <div>
-          <Link href={`/product/${product.id}`}><div className="flex items-center">More <span className="text-gray-500"><ChevronRight /></span></div></Link>
+          <Link scroll={false} href={`/product/${product.id}`}><div className="flex items-center">More <span className="text-gray-500"><ChevronRight /></span></div></Link>
         </div>
       </div>
     </div>

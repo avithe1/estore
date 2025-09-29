@@ -1,11 +1,7 @@
 "use client";
-
 import { createPortal } from "react-dom";
-import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { AlertCircle } from "lucide-react";
-import Image from "next/image";
 
 export function Modal({ children }: { children: React.ReactNode }) {
   const router = useRouter();
@@ -14,9 +10,8 @@ export function Modal({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     setMounted(true);
     document.body.style.overflow = "hidden";
-
     return () => {
-      document.body.style.overflow = "auto";
+      document.body.style.overflow = "unset";
     };
   }, []);
 
