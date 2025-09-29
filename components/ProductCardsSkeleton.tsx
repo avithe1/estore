@@ -13,7 +13,7 @@ const ProductsCardSkeleton = () => {
             <div className="relative aspect-square w-[70%] h-[200px] overflow-hidden bg-gray-700 animate-pulse"></div>
             <div className="mt-2">
               <h2 className="text-xl font-bold truncate flex-shrink-0">
-                <div className=" bg-gray-700 animate-pulse w-[250px] h-[20px]"></div>
+                <div className=" bg-gray-700 animate-pulse w-[350px] h-[20px]"></div>
               </h2>
             </div>
             <div className="flex items-center gap-2">

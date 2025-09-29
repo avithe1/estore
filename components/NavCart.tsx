@@ -2,13 +2,19 @@
 import React from "react";
 import { useAppSelector } from "@/lib/redux/hooks";
 import Link from "next/link";
+import { ShoppingCart } from "lucide-react";
 
 const NavCart = () => {
   const cartItems = useAppSelector((state) => state.cart.products);
   return (
-    <div>
-      <Link href="/cart">Cart: {cartItems.length}</Link>
-    </div>
+    <Link href="/cart">
+      <div className="flex items-center gap-2 rounded-xl border border-gray-700 px-4 py-2 hover:bg-gray-900">
+        <div>
+          <ShoppingCart />
+        </div>
+        <div>{cartItems.length}</div>
+      </div>
+    </Link>
   );
 };
 

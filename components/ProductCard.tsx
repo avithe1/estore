@@ -20,24 +20,24 @@ const ProductCard = ({ product }: { product: Product }) => {
         />
       </div>
       <div>
-        <h2 className="text-xl font-bold truncate flex-shrink-0">
+        <h2 className="text-xl font-semibold truncate flex-shrink-0">
           {product.title}
         </h2>
       </div>
       <div className="flex items-center gap-2">
-        <div className="text-sm mt-2 flex-1 overflow-hidden line-clamp-3 width-2/3">
+        <div className="text-sm mt-2 flex-1 overflow-hidden line-clamp-3 width-2/3 text-gray-400">
           {product.description}
         </div>
-        <div className="border border-gray-600 p-2 rounded">
+        <div className="border border-gray-600 px-2 py-1 rounded font-semibold">
           ${product.price}
         </div>
       </div>
       <InCartItemNotification product={product} />
       <div className="flex items-center justify-between py-4 ">
         <UpdateProduct product={product} />
-        <div className="flex items-center"><button className="cursor-pointer"><Eye /></button></div>
+        {/* <div className="flex items-center"><button className="cursor-pointer"><Eye /></button></div> */}
         <div>
-          <Link href={`/product/${product.id}`}><div className="flex items-center gap-1">Details <span className="text-gray-500"><ChevronRight /></span></div></Link>
+          <Link href={`/product/${product.id}`}><div className="flex items-center">More <span className="text-gray-500"><ChevronRight /></span></div></Link>
         </div>
       </div>
     </div>
