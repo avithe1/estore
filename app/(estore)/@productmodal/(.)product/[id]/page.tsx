@@ -12,14 +12,12 @@ const QuickViewDetailPage = async ({ params }: Props) => {
   const { id } = await params;
   return (
     <Modal>
-      <div className="flex w-full justify-center items-center">
-        <div className="w-full h-full overflow-scroll border border-gray-600 rounded-2xl p-2 md:p-5 bg-black">
-          <CloseModalButton />
+        <CloseModalButton />
+        <div className="flex-1 overflow-y-auto">
           <Suspense fallback={<ProductDetailsSkeleton />}>
             <ProductDetail id={id} />
           </Suspense>
         </div>
-      </div>
     </Modal>
   );
 };

@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 const CloseModalButton = () => {
   const router = useRouter();
   return (
-    <div className="flex items-center mt-4 justify-end gap-4">
+    <div className="flex items-center mr-4 justify-end gap-4">
       <div>
         <button className="cursor-pointer">
           <Share />
