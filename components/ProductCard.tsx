@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import InCartItemNotification from "./InCartItemNotification";
 import UpdateProduct from "./UpdateProduct";
-import { ChevronRight, Eye } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 
 const ProductCard = ({ product }: { product: Product }) => {
   return (

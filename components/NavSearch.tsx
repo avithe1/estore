@@ -12,7 +12,7 @@ const NavSearch = () => {
   const dispatch = useAppDispatch();
 
   const handleSearch = () => {
-    let s = search.trim();
+    const s = search.trim();
     if (s.length) {
       console.log("handleSearch set search term : ", s);
       dispatch(setSearchTerm({ search: s }));

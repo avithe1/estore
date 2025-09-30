@@ -5,17 +5,12 @@ import ProductCard from "./ProductCard";
 import { useAppSelector, useAppDispatch } from "@/lib/redux/hooks";
 import { clearSearchTerm } from "@/lib/redux/features/search/searchSlice";
 
-const ProductGrid = ({
-  products,
-}: {
-  products: Product[];
-}) => {
+const ProductGrid = ({ products }: { products: Product[] }) => {
   const [sortBy, setSortBy] = useState("");
   const { searchTerm } = useAppSelector((state) => state.search);
   const dispatch = useAppDispatch();
   const [filteredProducts, setFilteredProducts] = useState([...products]);
 
-  //let filteredProducts: Product[] = [];
   useEffect(() => {
     if (searchTerm.length) {
       setFilteredProducts(
@@ -23,9 +18,6 @@ const ProductGrid = ({
           product.title.toLowerCase().includes(searchTerm.toLowerCase())
         )
       );
-      setSortBy("");
-    } else {
-      setFilteredProducts(products);
       setSortBy("");
     }
   }, [searchTerm]);
@@ -43,7 +35,7 @@ const ProductGrid = ({
         ]);
         break;
       default:
-        setFilteredProducts([...filteredProducts]);
+        setFilteredProducts([...products]);
         return;
     }
   }, [sortBy]);
@@ -71,7 +63,9 @@ const ProductGrid = ({
           {filteredProducts.length ? (
             <>
               <div>
-                <label htmlFor="product-filter" className="text-sm">Sort by</label>
+                <label htmlFor="product-filter" className="text-sm">
+                  Sort by
+                </label>
               </div>
               <div>
                 <select
@@ -81,7 +75,7 @@ const ProductGrid = ({
                   onChange={(e) => setSortBy(e.target.value)}
                   value={sortBy}
                 >
-                  <option value="">Select</option>
+                  <option value="">None</option>
                   <option value="title">Title</option>
                   <option value="price">Price</option>
                 </select>
@@ -102,9 +96,7 @@ const ProductGrid = ({
             <ProductCard key={product.id} product={product} />
           ))
         ) : (
-          <div>
-            No products available
-          </div>
+          <div>No products available</div>
         )}
       </div>
     </div>
