@@ -2,13 +2,14 @@
 import type { Product } from "@/lib/products";
 import React, { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
-import { useAppSelector, useAppDispatch } from "@/lib/redux/hooks";
-import { clearSearchTerm } from "@/lib/redux/features/search/searchSlice";
+import { useSearchParams, useRouter } from "next/navigation";
+import { createQueryString } from "@/lib/utils";
 
 const ProductGrid = ({ products }: { products: Product[] }) => {
-  const [sortBy, setSortBy] = useState("");
-  const { searchTerm } = useAppSelector((state) => state.search);
-  const dispatch = useAppDispatch();
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const searchTerm = searchParams.get("search") || "";
+  const sortBy = searchParams.get("sort") || "";
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
 
   useEffect(() => {
@@ -51,7 +52,7 @@ const ProductGrid = ({ products }: { products: Product[] }) => {
               </h3>
               <button
                 className="px-3 py-0.5 rounded-2xl bg-gray-600 hover:bg-gray-500 cursor-pointer"
-                onClick={() => dispatch(clearSearchTerm())}
+                onClick={() => router.replace(createQueryString("", sortBy))}
               >
                 Clear search
               </button>
@@ -71,7 +72,11 @@ const ProductGrid = ({ products }: { products: Product[] }) => {
                   name="pets"
                   id="product-filter"
                   className="px-3 py-1 border border-gray-700 rounded"
-                  onChange={(e) => setSortBy(e.target.value)}
+                  onChange={(e) => {
+                    router.replace(
+                      createQueryString(searchTerm, e.target.value)
+                    );
+                  }}
                   value={sortBy}
                 >
                   <option value="">None</option>

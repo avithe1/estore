@@ -1,21 +1,19 @@
 "use client";
-import {
-  clearSearchTerm,
-  setSearchTerm,
-} from "@/lib/redux/features/search/searchSlice";
-import { useAppDispatch } from "@/lib/redux/hooks";
 import { Search, X } from "lucide-react";
 import React, { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { createQueryString } from "@/lib/utils";
 const NavSearch = () => {
+  const router = useRouter();
+  const searchParam = useSearchParams();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [search, setSearch] = useState<string>("");
-  const dispatch = useAppDispatch();
 
   const handleSearch = () => {
-    const s = search.trim();
-    if (s.length) {
-      console.log("handleSearch set search term : ", s);
-      dispatch(setSearchTerm({ search: s }));
+    if (search.trim().length) {
+      router.replace(
+        createQueryString(search.trim(), searchParam.get("sort") || "")
+      );
       setIsOpen(false);
       setSearch("");
     }
@@ -24,7 +22,6 @@ const NavSearch = () => {
   const clear = () => {
     setIsOpen(false);
     setSearch("");
-    dispatch(clearSearchTerm());
   };
 
   return (
@@ -36,7 +33,7 @@ const NavSearch = () => {
         }`}
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        tabIndex={isOpen?0:-1}
+        tabIndex={isOpen ? 0 : -1}
       />
       <button
         aria-label="search"
@@ -50,14 +47,14 @@ const NavSearch = () => {
               }
         }
       >
-        <Search className="size-4 sm:size-6"/>
+        <Search className="size-4 sm:size-6" />
       </button>
       <button
         aria-label="close search"
         className={`${isOpen ? "block" : "hidden"} cursor-pointer`}
         onClick={clear}
       >
-        <X className="size-4 sm:size-6"/>
+        <X className="size-4 sm:size-6" />
       </button>
     </div>
   );
