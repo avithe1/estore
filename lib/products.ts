@@ -1,3 +1,5 @@
+import { isNumber, isString } from "./utils";
+
 const BASE_URL = "https://fakestoreapi.com/";
 
 export type Product = {
@@ -15,22 +17,6 @@ export type CartItem = Product & {
 
 type ProductAPIResponse = Product;
 
-function isString(value: unknown): value is string {
-  return typeof value === "string";
-}
-
-function isNumber(value: unknown): value is number {
-  return typeof value === "number";
-}
-
-// function isStringArray(value: unknown): value is string[] {
-//   return Array.isArray(value) && value.every(isString);
-// }
-
-// function isValidDateString(dateString: string): boolean {
-//   const date = new Date(dateString);
-//   return !isNaN(date.getTime()) && date.toISOString() === dateString;
-// }
 
 // function validateProduct(data: unknown): boolean {
 //   if (data !== "object" && data === null) return false;

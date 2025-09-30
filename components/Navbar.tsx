@@ -1,6 +1,7 @@
 import NavCart from "./NavCart";
 import Link from "next/link";
 import NavSearch from "./NavSearch";
+import { Suspense } from "react";
 
 export default function Navbar() {
   return (
@@ -9,7 +10,9 @@ export default function Navbar() {
         <Link href="/">E-Cart</Link>
       </div>
       <div className="flex gap-3 items-center">
-        <NavSearch />
+        <Suspense>
+          <NavSearch />
+        </Suspense>
         <NavCart />
       </div>
     </div>
