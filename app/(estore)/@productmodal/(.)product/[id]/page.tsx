@@ -13,7 +13,7 @@ const QuickViewDetailPage = async ({ params }: Props) => {
   return (
     <Modal>
       <div className="flex w-full justify-center items-center">
-        <div className="w-3xl h-[80%] overflow-scroll border border-gray-600 rounded-2xl p-5 bg-black">
+        <div className="w-full h-full overflow-scroll border border-gray-600 rounded-2xl p-2 md:p-5 bg-black">
           <CloseModalButton />
           <Suspense fallback={<ProductDetailsSkeleton />}>
             <ProductDetail id={id} />
