@@ -8,13 +8,13 @@ import { ChevronRight } from "lucide-react";
 
 const ProductCard = ({ product }: { product: Product }) => {
   return (
-    <div className="p-2 border rounded border-gray-400 flex flex-col relative min-h-[250px]  hover:border-white hover:bg-gray-950">
+    <div className="group p-2 border rounded border-gray-400 flex flex-col relative min-h-[250px]  hover:border-white hover:bg-gray-950 cursor-pointer">
       <div className="relative aspect-square w-[70%] h-[200px] overflow-hidden ">
         <Image
           src={product.image}
           alt={product.title}
           fill
-          className="h-full w-full object-contain "
+          className="scale-80 h-full w-full object-contain group-hover:scale-100 transition-all duration-300"
           sizes="100%"
           priority
         />

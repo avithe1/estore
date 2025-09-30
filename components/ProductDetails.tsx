@@ -23,7 +23,7 @@ const ProductDetail = async (params: { id: number }) => {
   return product ? (
     <div className="w-full h-full flex flex-col p-4 sm:p-10 gap-3">
       <h1 className="mt-2 text-2xl font-bold">{product.title}</h1>
-      <div className="relative h-[200px] w-[200px] aspect-square overflow-hidden">
+      <div className="relative h-[400px] w-[400px] aspect-square overflow-hidden">
         <Image
           src={product.image}
           fill
