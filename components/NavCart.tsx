@@ -10,9 +10,9 @@ const NavCart = () => {
     <Link href="/cart">
       <div className="flex items-center gap-2 rounded-xl border border-gray-700 px-4 py-2 hover:bg-gray-900">
         <div>
-          <ShoppingCart />
+          <ShoppingCart className="size-4 sm:size-6"/>
         </div>
-        <div>{cartItems.length}</div>
+        <div className="text-sm sm:text-base">{cartItems.length}</div>
       </div>
     </Link>
   );

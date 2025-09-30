@@ -51,7 +51,7 @@ const ProductGrid = ({
   return (
     <div className="w-full flex flex-col gap-4 p-5">
       <div className="flex w-full items-center justify-between h-[30px] gap-4">
-        <div className="flex items-center gap-4">
+        <div className="flex w-[50%] items-center gap-4">
           {searchTerm.length ? (
             <>
               <h3 className="font-bold">
@@ -71,12 +71,12 @@ const ProductGrid = ({
           {filteredProducts.length ? (
             <>
               <div>
-                <label htmlFor="pet-select">Sort by</label>
+                <label htmlFor="product-filter" className="text-sm">Sort by</label>
               </div>
               <div>
                 <select
                   name="pets"
-                  id="pet-select"
+                  id="product-filter"
                   className="px-3 py-1 border border-gray-700 rounded"
                   onChange={(e) => setSortBy(e.target.value)}
                   value={sortBy}
@@ -94,7 +94,7 @@ const ProductGrid = ({
         className={
           filteredProducts.length
             ? "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full gap-3"
-            : ""
+            : "w-full flex flex-1 justify-center items-center"
         }
       >
         {filteredProducts.length ? (
@@ -102,7 +102,7 @@ const ProductGrid = ({
             <ProductCard key={product.id} product={product} />
           ))
         ) : (
-          <div className="flex w-full mt-20 justify-center items-center">
+          <div>
             No products available
           </div>
         )}

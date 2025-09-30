@@ -32,7 +32,7 @@ const NavSearch = () => {
       <input
         id="myInput"
         className={` transition-all duration-150 border border-gray-700 rounded-full  ${
-          !isOpen ? "w-[0px] border-0" : " w-[200px] px-4 py-0.2 "
+          !isOpen ? "w-[0px] border-0" : "w-[80px] sm:w-[200px] px-4 py-0.2 "
         }`}
         value={search}
         onChange={(e) => setSearch(e.target.value)}
@@ -50,14 +50,14 @@ const NavSearch = () => {
               }
         }
       >
-        <Search />
+        <Search className="size-4 sm:size-6"/>
       </button>
       <button
         aria-label="close search"
         className={`${isOpen ? "block" : "hidden"} cursor-pointer`}
         onClick={clear}
       >
-        <X />
+        <X className="size-4 sm:size-6"/>
       </button>
     </div>
   );

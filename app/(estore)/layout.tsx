@@ -6,10 +6,10 @@ export default function RootLayout({
   productmodal: React.ReactNode;
 }>) {
   return (
-    <div>
+    <>
       {children}
       {productmodal}
-    </div>
+    </>
   );
 }
 
