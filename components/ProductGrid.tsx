@@ -9,36 +9,35 @@ const ProductGrid = ({ products }: { products: Product[] }) => {
   const [sortBy, setSortBy] = useState("");
   const { searchTerm } = useAppSelector((state) => state.search);
   const dispatch = useAppDispatch();
-  const [filteredProducts, setFilteredProducts] = useState([...products]);
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
 
   useEffect(() => {
+    let fp = [];
     if (searchTerm.length) {
-      setFilteredProducts(
-        products.filter((product) =>
+      fp = [
+        ...products.filter((product) =>
           product.title.toLowerCase().includes(searchTerm.toLowerCase())
-        )
-      );
-      setSortBy("");
+        ),
+      ];
+    } else {
+      fp = [...products];
     }
-  }, [searchTerm]);
 
-  useEffect(() => {
-    switch (sortBy) {
-      case "title":
-        setFilteredProducts([
-          ...filteredProducts.sort((a, b) => a.title.localeCompare(b.title)),
-        ]);
-        break;
-      case "price":
-        setFilteredProducts([
-          ...filteredProducts.sort((a, b) => a.price - b.price),
-        ]);
-        break;
-      default:
-        setFilteredProducts([...products]);
-        return;
+    if (sortBy.length) {
+      switch (sortBy) {
+        case "title":
+          fp = [...fp.sort((a, b) => a.title.localeCompare(b.title))];
+          break;
+        case "price":
+          fp = [...fp.sort((a, b) => a.price - b.price)];
+          break;
+        default:
+          break;
+      }
     }
-  }, [sortBy]);
+
+    setFilteredProducts(fp);
+  }, [searchTerm, sortBy]);
 
   return (
     <div className="w-full flex flex-col gap-4 p-5">
