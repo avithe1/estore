@@ -1,4 +1,4 @@
-export default function RootLayout({
+export default function EstoreLayout({
   children,
   productmodal,
 }: Readonly<{
