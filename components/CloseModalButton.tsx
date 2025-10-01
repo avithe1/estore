@@ -8,11 +8,11 @@ const CloseModalButton = () => {
   const router = useRouter();
   return (
     <div className="flex items-center mr-4 justify-end gap-4">
-      <div>
+      {/* <div>
         <button className="cursor-pointer">
           <Share />
         </button>
-      </div>
+      </div> */}
       <div
         className="size-[30px] flex justify-center cursor-pointer items-center "
         onClick={(e) => {

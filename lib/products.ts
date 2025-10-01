@@ -17,22 +17,6 @@ export type CartItem = Product & {
 
 type ProductAPIResponse = Product;
 
-
-// function validateProduct(data: unknown): boolean {
-//   if (data !== "object" && data === null) return false;
-
-//   const obj = data as Record<string, unknown>;
-
-//   return (
-//     isNumber(obj.id) &&
-//     isString(obj.title) &&
-//     isNumber(obj.price) &&
-//     isString(obj.description) &&
-//     isString(obj.image) &&
-//     isString(obj.category)
-//   );
-// }
-
 function validateProductResponse(data: unknown): data is Product {
   if (data !== "object" && data === null) return false;
 
@@ -86,25 +70,17 @@ export const getProducts = async (): Promise<Product[]> => {
 
 export const getProduct = async (id: number): Promise<Product> => {
   try {
-    const response = await fetch(BASE_URL + "products/" + id.toString(), {
-      //cache: "force-cache",
-      next:{
-        revalidate:3600,
-        tags:[`product-${id}`]
-      }
-    });
+    const response = await fetch(BASE_URL + "products/" + id.toString());
 
     if (!response.ok) {
-      throw new Error("HTTP error. Failed to fetch product, try again later");
+      throw new Error("HTTP error. Failed to fetch product");
     }
 
     let jsonData: unknown;
     try {
       jsonData = await response.json();
     } catch (e) {
-      throw new Error(
-        e instanceof Error ? e.message : "JSON error. Invalid data format"
-      );
+      throw new Error("Unexpected data recieved");
     }
 
     if (!validateProductResponse(jsonData)) {
