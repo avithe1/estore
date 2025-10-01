@@ -18,6 +18,24 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {
       title: product.title,
       description: product.description,
+      openGraph: {
+        title: product.title,
+        description: product.description,
+        images: [
+          {
+            url: product.image, // Must be an absolute URL
+            width: 1200,
+            height: 630,
+            alt: "Image description",
+          },
+        ],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: product.title,
+        description: product.description,
+        images: [product.image],
+      },
     };
   } catch (error) {
     console.error("Error in generateMetadata:", error);

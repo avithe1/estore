@@ -11,9 +11,9 @@ const ProductDetailsSkeleton = () => {
             className="text-sm w-[95%] h-[16px]  bg-gray-700 animate-pulse"
           ></div>
         ))}
-      <div className="mt-3">
+      {/* <div className="mt-3">
         <button className="border border-white rounded bg-gray-700 px-2 py-1 animate-pulse w-[100px] h-[40px]"></button>
-      </div>
+      </div> */}
     </div>
   );
 };
