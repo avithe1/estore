@@ -47,7 +47,7 @@ const NavSearch = () => {
               }
         }
       >
-        <Search className="size-4 sm:size-6" />
+        <Search className={`size-4 sm:size-6 ${isOpen?"text-blue-500 animate-pulse":""}`} />
       </button>
       <button
         aria-label="close search"
