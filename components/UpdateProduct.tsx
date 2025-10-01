@@ -51,7 +51,7 @@ const UpdateProduct = ({ product }: { product: Product }) => {
           ) : (
             <div className="flex items-center">
               <button
-                className="cursor-pointer border border-gray-600 px-1 sm:px-2 rounded"
+                className="cursor-pointer border px-1 sm:px-2 rounded hover:bg-hovercolor"
                 onClick={() => dispatch(removeFromCart(product))}
               >
                 -
@@ -64,7 +64,6 @@ const UpdateProduct = ({ product }: { product: Product }) => {
               aria-label="Quantity input"
               max={MAX_PRODUCT_QUANTITY}
               min={1}
-              //style={{ width: "5ch" }}
               className="w-[3ch] sm:w-[5ch]"
               type="number"
               value={productQuantity}
@@ -88,7 +87,7 @@ const UpdateProduct = ({ product }: { product: Product }) => {
           </div>
           <div className="flex items-center">
             <button
-              className="cursor-pointer border border-gray-600 px-1 sm:px-2 rounded"
+              className="cursor-pointer border px-1 sm:px-2 rounded hover:bg-hovercolor"
               onClick={() => dispatch(addToCart(product))}
             >
               +

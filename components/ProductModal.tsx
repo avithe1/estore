@@ -40,7 +40,7 @@ export function Modal({ children }: { children: React.ReactNode }) {
       onClick={handleBackdropClick}
     >
       <div
-        className="w-[80%] max-w-[700px] h-[70dvh] bg-black border border-gray-600 rounded-2xl flex flex-col py-6"
+        className="w-[80%] max-w-[700px] h-[70dvh] bg-background border-2 rounded-2xl flex flex-col py-6"
         onClick={(e) => e.stopPropagation()}
       >
         {children}

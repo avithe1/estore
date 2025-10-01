@@ -3,6 +3,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --hovercolor: #f3f4f6;
   --navheight: 70px;
 }
 
@@ -13,12 +14,14 @@
   --font-mono: var(--font-geist-mono);
   --height-navbar: var(--navheight);
   --height-maincontent: calc(100vh - var(--navheight));
+  --color-hovercolor: var(--hovercolor);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --hovercolor: #1e2939;
   }
 }
 

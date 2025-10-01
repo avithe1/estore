@@ -15,7 +15,7 @@ const InCartItemNotification = ({ product }: { product: Product }) => {
 
   return (
     <Link href="/cart">
-      <div className="absolute -top-1 -right-1 bg-white text-black px-2 py-2 rounded-xl flex items-center text-sm gap-2">
+      <div className="absolute -top-1.5 -right-1 px-2 py-2 rounded-xl flex items-center text-sm gap-2 bg-foreground text-background border-2 border-background">
         <div>
           <ShoppingCart size={14} />
         </div>

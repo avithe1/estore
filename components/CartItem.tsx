@@ -10,7 +10,7 @@ const CartItem = ({ product }: { product: Product }) => {
       <Link
         scroll={false}
         href={`/product/${product.id}`}
-        className="w-full flex items-center gap-2 hover:bg-gray-900/20"
+        className="w-full flex items-center gap-2 hover:bg-hovercolor"
       >
         <div className="relative md:h-[100px] md:w-[100px]  h-[50px] w-[50px] aspect-square">
           <Image
