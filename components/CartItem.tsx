@@ -7,7 +7,11 @@ import Link from "next/link";
 const CartItem = ({ product }: { product: Product }) => {
   return (
     <div className="p-1 sm:p-2 border-b border-gray-900 flex justify-between items-center last:border-0">
-      <div className="flex gap-2 items-center">
+      <Link
+        scroll={false}
+        href={`/product/${product.id}`}
+        className="w-full flex items-center gap-2 hover:bg-gray-900/20"
+      >
         <div className="relative md:h-[100px] md:w-[100px]  h-[50px] w-[50px] aspect-square">
           <Image
             src={product.image}
@@ -23,7 +27,7 @@ const CartItem = ({ product }: { product: Product }) => {
             {product.title}
           </h2>
         </div>
-      </div>
+      </Link>
       <div className="flex flex-col gap-2 border-l border-gray-700 px-1 sm:px-3">
         <div className="text-sm">
           <span className="text-gray-600">Price/item :</span> {product.price}

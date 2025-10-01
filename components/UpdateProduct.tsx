@@ -11,6 +11,8 @@ import {
 import { useAppDispatch } from "@/lib/redux/hooks";
 import { Trash2 } from "lucide-react";
 
+const MAX_PRODUCT_QUANTITY = 25;
+
 const UpdateProduct = ({ product }: { product: Product }) => {
   const cartItems = useAppSelector((state) => state.cart.products);
   const filteredCartArray = cartItems.filter((item) => item.id === product.id);
@@ -43,7 +45,7 @@ const UpdateProduct = ({ product }: { product: Product }) => {
                 className="cursor-pointer"
                 onClick={() => dispatch(removeFromCart(product))}
               >
-                <Trash2 color="red" />
+                <Trash2 className="text-red-700" />
               </button>
             </div>
           ) : (
@@ -59,7 +61,7 @@ const UpdateProduct = ({ product }: { product: Product }) => {
 
           <div className="flex items-center">
             <input
-              max={10}
+              max={MAX_PRODUCT_QUANTITY}
               min={1}
               //style={{ width: "5ch" }}
               className="w-[3ch] sm:w-[5ch]"
@@ -68,9 +70,11 @@ const UpdateProduct = ({ product }: { product: Product }) => {
               onChange={(e) => {
                 if (
                   !isNaN(Number(e.target.value)) &&
-                  Number(e.target.value) > 0
+                  Number(e.target.value) > 0 &&
+                  Number(e.target.value) < MAX_PRODUCT_QUANTITY
                 ) {
                   setProductQuantity(Number(e.target.value));
+
                   dispatch(
                     updateProductQuantity({
                       id: product.id,
@@ -83,7 +87,7 @@ const UpdateProduct = ({ product }: { product: Product }) => {
           </div>
           <div className="flex items-center">
             <button
-              className="cursor-pointer border border-gray-600 px-1 sm:px-2 ounded"
+              className="cursor-pointer border border-gray-600 px-1 sm:px-2 rounded"
               onClick={() => dispatch(addToCart(product))}
             >
               +

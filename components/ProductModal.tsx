@@ -36,7 +36,7 @@ export function Modal({ children }: { children: React.ReactNode }) {
 
   const modalContent = (
     <div
-      className="fixed inset-0 z-50 bg-black/20 flex items-center justify-center w-full "
+      className="fixed inset-0 z-50 bg-black/40 flex items-center justify-center w-full backdrop-blur-sm"
       onClick={handleBackdropClick}
     >
       <div
