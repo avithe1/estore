@@ -12,14 +12,14 @@ const ProductDetail = async (params: { id: number }) => {
         <h1 className="mt-2 mr-2 text-2xl font-bold">{product.title}</h1>
         <UpdateProduct product={product} />
       </div>
-      <div className="relative size-[400px] aspect-square">
+      <div className="relative size-[70%] lg:size-[50%] aspect-square bg-gray-900/50 rounded-xl">
         <Image
           src={product.image}
           fill
           sizes="100%"
           alt={product.title}
           priority
-          className="object-contain"
+          className="object-contain p-5"
         />
       </div>
       {<div className="text-sm">{product.description}</div>}
