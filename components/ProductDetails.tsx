@@ -22,19 +22,21 @@ const ProductDetail = async (params: { id: number }) => {
 
   return product ? (
     <div className="w-full h-full flex flex-col p-4 sm:p-10 gap-3">
-      <h1 className="mt-2 text-2xl font-bold">{product.title}</h1>
-      <div className="relative h-[400px] w-[400px] aspect-square overflow-hidden">
+      <div className="flex items-center justify-between">
+      <h1 className="mt-2 mr-2 text-2xl font-bold">{product.title}</h1>
+      <UpdateProduct product={product} />
+      </div>
+      <div className="relative max-h-[500px] max-w-[50%] aspect-square">
         <Image
           src={product.image}
           fill
           sizes="100%"
           alt={product.title}
           priority
-          className="h-full w-full object-contain"
+          className="object-cover"
         />
       </div>
       {<div className="text-sm">{product.description}</div>}
-      <UpdateProduct product={product} />
     </div>
   ) : null;
 };
