@@ -61,6 +61,7 @@ const UpdateProduct = ({ product }: { product: Product }) => {
 
           <div className="flex items-center">
             <input
+              aria-label="Quantity input"
               max={MAX_PRODUCT_QUANTITY}
               min={1}
               //style={{ width: "5ch" }}

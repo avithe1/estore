@@ -27,7 +27,7 @@ const NavSearch = () => {
   return (
     <div className="flex items-center gap-2">
       <input
-        id="myInput"
+        aria-label="Search input"
         className={` transition-all duration-150 border border-gray-700 rounded-full  ${
           !isOpen ? "w-[0px] border-0" : "w-[80px] sm:w-[200px] px-4 py-0.2 "
         }`}
