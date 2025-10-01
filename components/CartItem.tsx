@@ -5,7 +5,7 @@ import Image from "next/image";
 
 const CartItem = ({ product }: { product: Product }) => {
   return (
-    <div className="p-2 border rounded border-gray-400 flex justify-between items-center">
+    <div className="p-1 sm:p-2 border-b border-gray-900 flex justify-between items-center last:border-0">
       <div className="flex gap-2 items-center">
         <div className="relative md:h-[100px] md:w-[100px]  h-[50px] w-[50px] aspect-square">
           <Image src={product.image} sizes="100%" fill alt={product.title} priority className="h-full w-full object-contain"/>
@@ -16,8 +16,8 @@ const CartItem = ({ product }: { product: Product }) => {
           </h2>
         </div>
       </div>
-      <div className="flex flex-col gap-4 border-l border-gray-700 px-3">
-        <div>Price : {product.price} per item</div>
+      <div className="flex flex-col gap-2 border-l border-gray-700 px-1 sm:px-3">
+        <div className="text-sm"><span className="text-gray-600">Price/item :</span> {product.price}</div>
         <div className="self-end"><UpdateProduct product={product} /></div>
       </div>
     </div>

@@ -34,7 +34,7 @@ const UpdateProduct = ({ product }: { product: Product }) => {
   return (
     <div>
       {!isProductInCart ? (
-        <AddToCartButton product={product} >Add to cart</AddToCartButton>
+        <AddToCartButton product={product}>Add to cart</AddToCartButton>
       ) : (
         <div className="flex gap-2 items-center">
           {productQuantity === 1 ? (
@@ -49,7 +49,7 @@ const UpdateProduct = ({ product }: { product: Product }) => {
           ) : (
             <div className="flex items-center">
               <button
-                className="cursor-pointer border border-gray-600 px-2  rounded"
+                className="cursor-pointer border border-gray-600 px-1 sm:px-2 rounded"
                 onClick={() => dispatch(removeFromCart(product))}
               >
                 -
@@ -60,24 +60,30 @@ const UpdateProduct = ({ product }: { product: Product }) => {
           <div className="flex items-center">
             <input
               max={10}
-              min={0}
-              style={{ width: "5ch" }}
+              min={1}
+              //style={{ width: "5ch" }}
+              className="w-[3ch] sm:w-[5ch]"
               type="number"
               value={productQuantity}
               onChange={(e) => {
-                setProductQuantity(Number(e.target.value));
-                dispatch(
-                  updateProductQuantity({
-                    id: product.id,
-                    quantity: Number(e.target.value),
-                  })
-                );
+                if (
+                  !isNaN(Number(e.target.value)) &&
+                  Number(e.target.value) > 0
+                ) {
+                  setProductQuantity(Number(e.target.value));
+                  dispatch(
+                    updateProductQuantity({
+                      id: product.id,
+                      quantity: Number(e.target.value),
+                    })
+                  );
+                }
               }}
             />
           </div>
           <div className="flex items-center">
             <button
-              className="cursor-pointer border border-gray-600 px-2  rounded"
+              className="cursor-pointer border border-gray-600 px-1 sm:px-2 ounded"
               onClick={() => dispatch(addToCart(product))}
             >
               +

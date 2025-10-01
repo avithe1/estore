@@ -27,8 +27,9 @@ export default function Cart() {
     <div className="w-full">
       <BackButton />
       <CartItems products={cartItems} />
-      <h3 className="text-right mr-10 text-2xl font-bold mt-3">
-        Total Price : {totalPrice.toFixed(2)}
+      <h3 className="text-right mr-10 text-2xl mt-3">
+        Total Price :{" "}
+        <span className="font-semibold">{totalPrice.toFixed(2)}</span>
       </h3>
     </div>
   );
