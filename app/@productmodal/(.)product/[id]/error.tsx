@@ -5,7 +5,7 @@ import React from "react";
 
 const error = ({
   error,
-  reset,
+  //reset,
 }: {
   error: Error & { digest?: string };
   reset: () => void;

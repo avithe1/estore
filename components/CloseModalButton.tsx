@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Share, X } from "lucide-react";
+import { X } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 const CloseModalButton = () => {

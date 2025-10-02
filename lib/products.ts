@@ -80,7 +80,7 @@ export const getProduct = async (id: number): Promise<Product> => {
     try {
       jsonData = await response.json();
     } catch (e) {
-      throw new Error("Unexpected data recieved");
+      throw e;
     }
 
     if (!validateProductResponse(jsonData)) {
