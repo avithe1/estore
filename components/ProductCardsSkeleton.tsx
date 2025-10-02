@@ -2,7 +2,7 @@ import React from "react";
 
 const ProductsCardSkeleton = () => {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full gap-3 p-5 mt-10">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full gap-3 p-5 mt-11">
       {Array(6)
         .fill(0)
         .map((_, index) => (
@@ -23,13 +23,16 @@ const ProductsCardSkeleton = () => {
                   .map((_, index) => (
                     <div
                       key={index}
-                      className="bg-gray-700 animate-pulse w-full h-[14px] mt-1"
+                      className="bg-gray-700 animate-pulse w-full h-[14px] mt-1.5"
                     ></div>
                   ))}
               </div>
               <div className="border border-gray-600 p-2 rounded">
                 <div className=" bg-gray-700 animate-pulse w-[50px] h-[16px]"></div>
               </div>
+            </div>
+            <div className="my-4 flex justify-center items-center">
+              <div className="w-[80px] h-[30px]  bg-gray-700 animate-pulse"></div>
             </div>
           </div>
         ))}

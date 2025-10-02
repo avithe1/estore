@@ -17,6 +17,7 @@ const ProductCard = ({ product }: { product: Product }) => {
             className="scale-80 h-full w-full object-contain group-hover:scale-100 transition-all duration-300"
             sizes="100%"
             priority
+            fetchPriority="high"
           />
         </div>
         <div>
@@ -36,16 +37,6 @@ const ProductCard = ({ product }: { product: Product }) => {
       <InCartItemNotification product={product} />
       <div className="flex items-center justify-center py-4 ">
         <UpdateProduct product={product} />
-        {/* <div>
-          <Link scroll={false} href={`/product/${product.id}`}>
-            <div className="flex items-center">
-              More{" "}
-              <span className="text-gray-500">
-                <ChevronRight />
-              </span>
-            </div>
-          </Link>
-        </div> */}
       </div>
     </div>
   );

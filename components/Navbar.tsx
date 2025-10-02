@@ -9,7 +9,7 @@ export default function Navbar() {
       <div className="sm:text-2xl font-bold">
         <Link href="/">E-Cart</Link>
       </div>
-      <div className="flex gap-3 items-center">
+      <div className="flex gap-3 items-center justify-end">
         <Suspense>
           <NavSearch />
         </Suspense>
