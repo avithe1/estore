@@ -3,15 +3,12 @@ export const createQueryString = (
   sort: string = ""
 ): string => {
   if (!isString(search) && !isString(sort)) return "";
-
-  let s = "?";
-  if (search.length) {
-    s += `search=${search}&`;
-  }
-  if (sort) {
-    s += `sort=${sort}`;
-  }
-  return s;
+  let s1 = "?";
+  s1 += `${search.length ? "search=" + search : ""}${
+    search.length && sort.length ? "&" : ""
+  }`;
+  s1 += `${sort.length ? "sort=" + sort : ""}`;
+  return s1;
 };
 
 export function isString(value: unknown): value is string {

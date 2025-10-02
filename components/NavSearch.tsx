@@ -33,7 +33,11 @@ const NavSearch = () => {
         }`}
         value={search}
         onChange={(e) => setSearch(e.target.value)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") handleSearch();
+        }}
         tabIndex={isOpen ? 0 : -1}
+        id="myInput"
       />
       <button
         aria-label="search"
@@ -47,7 +51,11 @@ const NavSearch = () => {
               }
         }
       >
-        <Search className={`size-4 sm:size-6 ${isOpen?"text-blue-500 animate-pulse":""}`} />
+        <Search
+          className={`size-4 sm:size-6 ${
+            isOpen ? "text-blue-500 animate-pulse" : ""
+          }`}
+        />
       </button>
       <button
         aria-label="close search"
