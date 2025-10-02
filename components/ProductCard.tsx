@@ -17,7 +17,6 @@ const ProductCard = ({ product }: { product: Product }) => {
             className="scale-80 h-full w-full object-contain group-hover:scale-100 transition-all duration-300"
             sizes="100%"
             priority
-            fetchPriority="high"
           />
         </div>
         <div>
