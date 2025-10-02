@@ -15,7 +15,7 @@ const QuickViewDetailPage = async ({ params }: Props) => {
       <CloseModalButton />
       <div className="flex-1 overflow-y-auto">
         <Suspense fallback={<ProductDetailsSkeleton />}>
-          <ProductDetail id={id} />
+          <ProductDetail id={id} isDialog={true}/>
         </Suspense>
       </div>
     </Modal>

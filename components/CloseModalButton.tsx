@@ -8,19 +8,16 @@ const CloseModalButton = () => {
   const router = useRouter();
   return (
     <div className="flex items-center mr-4 justify-end gap-4">
-      {/* <div>
-        <button className="cursor-pointer">
-          <Share />
+      <div className="size-[30px]">
+        <button
+          className="h-full w-full flex justify-center items-center cursor-pointer focus:bg-hovercolor hover:bg-hovercolor rounded-md"
+          onClick={(e) => {
+            e.stopPropagation();
+            router.back();
+          }}
+        >
+          <X />
         </button>
-      </div> */}
-      <div
-        className="size-[30px] flex justify-center cursor-pointer items-center "
-        onClick={(e) => {
-          e.stopPropagation();
-          router.back();
-        }}
-      >
-        <X />
       </div>
     </div>
   );

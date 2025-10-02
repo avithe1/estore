@@ -2,15 +2,21 @@ import UpdateProduct from "@/components/UpdateProduct";
 import { getProduct, Product } from "@/lib/products";
 import Image from "next/image";
 
-const ProductDetail = async (params: { id: number }) => {
+const ProductDetail = async ({
+  id,
+  isDialog = false,
+}: {
+  id: number;
+  isDialog?: boolean;
+}) => {
   let product: Product | null = null;
-  product = await getProduct(params.id);
+  product = await getProduct(id);
 
   return product ? (
-    <div className="w-full h-full flex flex-col p-4 sm:p-10 gap-3">
+    <div className="w-full h-full flex flex-col p-4 sm:p-10 gap-3 max-w-3xl mx-auto">
       <div className="flex items-center justify-between">
         <h1 className="mt-2 mr-2 text-2xl font-bold">{product.title}</h1>
-        <UpdateProduct product={product} />
+        {isDialog ? <UpdateProduct product={product} /> : null}
       </div>
       <div className="relative size-[70%] lg:size-[50%] aspect-square bg-foreground/10 rounded-xl">
         <Image
@@ -23,6 +29,7 @@ const ProductDetail = async (params: { id: number }) => {
         />
       </div>
       {<div className="text-sm">{product.description}</div>}
+      {!isDialog ? <UpdateProduct product={product} /> : null}
     </div>
   ) : null;
 };
