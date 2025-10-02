@@ -18,9 +18,9 @@ const InCartItemNotification = ({ product }: { product: Product }) => {
     <button
       onClick={() => router.push("/cart")}
       aria-label="cart shortcut"
-      className="absolute -top-1.5 -right-1 rounded-xl text-sm border-2 bg-background hover:bg-hovercolor focus:bg-hovercolor overflow-hidden"
+      className="absolute -top-1.5 -right-1 rounded-xl text-sm border-2 bg-background hover:bg-hovercolor focus:bg-hovercolor overflow-hidden cursor-pointer"
     >
-      <div className="flex items-center px-2 py-2 gap-2 ">
+      <div className="flex items-center px-2 py-2 gap-2">
         <div>
           <ShoppingCart size={14} />
         </div>
