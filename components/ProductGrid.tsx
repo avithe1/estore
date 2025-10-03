@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 import { useSearchParams, useRouter } from "next/navigation";
 import { createQueryString } from "@/lib/utils";
+import { Search, X } from "lucide-react";
 
 const ProductGrid = ({ products }: { products: Product[] }) => {
   const searchParams = useSearchParams();
@@ -46,15 +47,14 @@ const ProductGrid = ({ products }: { products: Product[] }) => {
         <div className="flex w-[50%] items-center gap-4">
           {searchTerm.length ? (
             <>
-              <h3 className="font-bold">
-                Showing results for :{" "}
-                <span className="text-blue-500">{searchTerm}</span>
-              </h3>
+              <div className="font-bold flex items-center gap-2">
+                <div className="flex items-center"><Search size={14}/>:</div><div className="text-blue-500">{searchTerm}</div>
+              </div>
               <button
                 className="px-3 py-0.5 rounded-2xl bg-gray-600 hover:bg-gray-500 cursor-pointer"
                 onClick={() => router.replace(createQueryString("", sortBy))}
               >
-                Clear search
+                <X size={14}/>
               </button>
             </>
           ) : null}
@@ -71,7 +71,7 @@ const ProductGrid = ({ products }: { products: Product[] }) => {
                 <select
                   name="pets"
                   id="product-filter"
-                  className="px-3 py-1 border border-gray-700 rounded"
+                  className="px-1 py-1 border border-gray-700 rounded"
                   onChange={(e) => {
                     router.replace(
                       createQueryString(searchTerm, e.target.value)
