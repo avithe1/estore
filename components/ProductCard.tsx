@@ -5,11 +5,21 @@ import Image from "next/image";
 import InCartItemNotification from "./InCartItemNotification";
 import UpdateProduct from "./UpdateProduct";
 
-const ProductCard = ({ product }: { product: Product }) => {
+const ProductCard = ({
+  product,
+  lazy = true,
+}: {
+  product: Product;
+  lazy: boolean;
+}) => {
   return (
     <div className="group p-2 border rounded-xl border-gray-400 flex flex-col relative min-h-[250px]  hover:border-white hover:ring-2">
-      <Link scroll={false} href={`/product/${product.id}`} className="cursor-pointer">
-        <div className="relative aspect-square w-[70%] h-[200px] overflow-hidden ">
+      <Link
+        scroll={false}
+        href={`/product/${product.id}`}
+        className="cursor-pointer"
+      >
+        {/* <div className="relative aspect-square w-[70%] h-[200px] overflow-hidden ">
           <Image
             src={product.image}
             alt={product.title}
@@ -17,6 +27,18 @@ const ProductCard = ({ product }: { product: Product }) => {
             className="scale-80 h-full w-full object-contain group-hover:scale-100 transition-all duration-300"
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
             priority
+          />
+        </div> */}
+
+        <div className="relative aspect-square overflow-hidden">
+          <Image
+            src={product.image}
+            alt={product.title}
+            width={200}
+            height={200}
+            className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-300"
+            sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 20vw"
+            loading={lazy ? "lazy" : "eager"}
           />
         </div>
         <div>
