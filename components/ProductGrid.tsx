@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 import { useSearchParams, useRouter } from "next/navigation";
 import { createQueryString } from "@/lib/utils";
-import ProductsCardSkeleton from "./ProductCardsSkeleton";
 
 const ProductGrid = ({ products }: { products: Product[] }) => {
   const searchParams = useSearchParams();
@@ -97,17 +96,9 @@ const ProductGrid = ({ products }: { products: Product[] }) => {
         }
       >
         {filteredProducts.length ? (
-          <>
-            {filteredProducts.map((product, index) => {
-              return (
-                <ProductCard
-                  key={product.id}
-                  product={product}
-                  lazy={index < 4 ? true : false}
-                />
-              );
-            })}
-          </>
+          filteredProducts.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))
         ) : (
           <div>No products available</div>
         )}
