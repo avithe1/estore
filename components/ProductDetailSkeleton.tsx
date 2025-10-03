@@ -2,7 +2,7 @@ const ProductDetailsSkeleton = () => {
   return (
     <div className="w-full min-h-screen flex flex-col p-10 gap-3 max-w-3xl mx-auto">
       <h1 className="mt-2 text-2xl font-bold w-[50%] h-[25px]  bg-gray-700 animate-pulse"></h1>
-      <div className="relative md:h-[300px] md:w-[300px] h-[250px] w-[150px] aspect-square overflow-hidden bg-gray-700 animate-pulse mt-5 mb-5"></div>
+      <div className="relative md:h-[200px] md:w-[200px] h-[250px] w-[150px] aspect-square overflow-hidden bg-gray-700 animate-pulse mt-5 mb-5"></div>
       {Array(3)
         .fill(0)
         .map((_, index) => (
