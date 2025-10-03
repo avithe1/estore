@@ -15,6 +15,7 @@ export default function Navbar() {
             alt="estore logo"
             height={50}
             width={50}
+            priority={true}
           />
         </Link>
       </div>
