@@ -9,13 +9,13 @@ const ProductCard = ({ product }: { product: Product }) => {
   return (
     <div className="group p-2 border rounded-xl border-gray-400 flex flex-col relative min-h-[250px]  hover:border-white hover:ring-2">
       <Link scroll={false} href={`/product/${product.id}`} className="cursor-pointer">
-        <div className="relative aspect-square w-[70%] h-[200px] overflow-hidden ">
+        <div className="relative aspect-square max-w-[70%] max-h-[200px] overflow-hidden ">
           <Image
             src={product.image}
             alt={product.title}
             fill
             className="scale-80 h-full w-full object-contain group-hover:scale-100 transition-all duration-300"
-            sizes="100%"
+            sizes="(max-width: 768px) h-[200px], 100%"
             priority
           />
         </div>
