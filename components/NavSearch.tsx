@@ -12,7 +12,7 @@ const NavSearch = () => {
   const handleSearch = () => {
     if (search.trim().length) {
       router.replace(
-        createQueryString(search.trim(), searchParam.get("sort") || "")
+        "/" + createQueryString(search.trim(), searchParam.get("sort") || "")
       );
       setIsOpen(false);
       setSearch("");
