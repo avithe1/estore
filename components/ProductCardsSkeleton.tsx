@@ -8,7 +8,7 @@ const ProductsCardSkeleton = () => {
         .map((_, index) => (
           <div
             key={index}
-            className="p-2 border rounded border-gray-400 flex flex-col relative min-h-[250px]"
+            className="p-2 border rounded-xl border-gray-400 flex flex-col relative min-h-[250px]"
           >
             <div className="relative aspect-square w-[70%] h-[200px] overflow-hidden bg-gray-700 animate-pulse"></div>
             <div className="mt-2">

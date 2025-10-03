@@ -7,7 +7,7 @@ import UpdateProduct from "./UpdateProduct";
 
 const ProductCard = ({ product }: { product: Product }) => {
   return (
-    <div className="group p-2 border rounded border-gray-400 flex flex-col relative min-h-[250px]  hover:border-white hover:ring-2">
+    <div className="group p-2 border rounded-xl border-gray-400 flex flex-col relative min-h-[250px]  hover:border-white hover:ring-2">
       <Link scroll={false} href={`/product/${product.id}`} className="cursor-pointer">
         <div className="relative aspect-square w-[70%] h-[200px] overflow-hidden ">
           <Image
