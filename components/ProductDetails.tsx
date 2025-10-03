@@ -15,7 +15,7 @@ const ProductDetail = async ({
   return product ? (
     <div className="w-full h-full flex flex-col p-4 sm:p-10 gap-3 max-w-3xl mx-auto">
       <div className="flex items-center justify-between">
-        <h1 className="mt-2 mr-2 text-2xl font-bold max-w-[70%] bg-amber-300">{product.title}</h1>
+        <h1 className="mt-2 mr-2 text-2xl font-bold max-w-[70%]">{product.title}</h1>
         {isDialog ? <UpdateProduct product={product} /> : null}
       </div>
       <div className="relative size-[70%] lg:size-[50%] aspect-square bg-foreground/10 rounded-xl">
