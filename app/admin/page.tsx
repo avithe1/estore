@@ -2,7 +2,7 @@ import React from 'react'
 
 const AdminPage = () => {
   return (
-    <div>Admin Page</div>
+    <div className='w-full flex justify-center items-center'>Admin Page</div>
   )
 }
 
