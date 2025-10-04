@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import StoreProvider from "@/lib/redux/StateProvider";
 import Navbar from "@/components/Navbar";
+import { Toaster } from 'sonner';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -40,6 +41,7 @@ export default function RootLayout({
           </nav>
           <main className="flex w-full min-h-maincontent">{children}</main>
           {productmodal}
+          <Toaster />
         </StoreProvider>
       </body>
     </html>
