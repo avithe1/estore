@@ -1,3 +1,4 @@
+'use server'
 import { isNumber, isString } from "./utils";
 
 const BASE_URL = "https://fakestoreapi.com/";
@@ -38,7 +39,7 @@ function validateProductsResponse(data: unknown): data is ProductAPIResponse[] {
 
 export const getProducts = async (): Promise<Product[]> => {
   try {
-    const response = await fetch(BASE_URL + "products");
+    const response = await fetch(BASE_URL + "products",{next:{revalidate:60000}});
     if (!response.ok) {
       throw new Error(`HTTP Error ${response.status}: ${response.statusText}`);
     }
@@ -70,7 +71,7 @@ export const getProducts = async (): Promise<Product[]> => {
 
 export const getProduct = async (id: number): Promise<Product> => {
   try {
-    const response = await fetch(BASE_URL + "products/" + id.toString());
+    const response = await fetch(BASE_URL + "products/" + id.toString() , {next:{revalidate:60000}});
 
     if (!response.ok) {
       throw new Error("HTTP error. Failed to fetch product");
