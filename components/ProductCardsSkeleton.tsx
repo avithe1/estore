@@ -1,8 +1,9 @@
 import React from "react";
 
+
 const ProductsCardSkeleton = () => {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full gap-3 p-5 mt-11">
+    <div className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full gap-3`}>
       {Array(6)
         .fill(0)
         .map((_, index) => (

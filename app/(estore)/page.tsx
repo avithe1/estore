@@ -26,7 +26,14 @@ async function Products() {
 
 export default async function Home() {
   return (
-    <Suspense fallback={<ProductsCardSkeleton />}>
+    <Suspense
+      fallback={
+        <div className="w-full flex flex-col gap-4 p-5">
+          <div className="flex w-full items-center justify-between h-[30px] gap-4"></div>
+          <ProductsCardSkeleton />
+        </div>
+      }
+    >
       <Products />
     </Suspense>
   );
