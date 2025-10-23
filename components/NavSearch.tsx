@@ -35,6 +35,7 @@ const NavSearch = () => {
         onChange={(e) => setSearch(e.target.value)}
         onKeyDown={(e) => {
           if (e.key === "Enter") handleSearch();
+          if (e.key === "Escape") clear();
         }}
         tabIndex={isOpen ? 0 : -1}
         id="myInput"
