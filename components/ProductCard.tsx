@@ -21,7 +21,8 @@ const ProductCard = ({ product }: { product: Product }) => {
               fill
               className="scale-80 h-full w-full object-contain group-hover:scale-100 transition-all duration-300"
               sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-              priority
+              quality={75}
+              loading="lazy"
             />
           </div>
         </div>
