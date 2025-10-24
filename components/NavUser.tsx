@@ -7,7 +7,7 @@ const NavUser = async () => {
   const session = await auth();
 
   return (
-    <Link href="/signin">
+    <Link href="/signin" aria-label="Go to login page">
       {!session?.user ? <UserRound /> : <UserRoundCheck />}
     </Link>
   );
