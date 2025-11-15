@@ -15,7 +15,7 @@ async function Products() {
 
   if (error) {
     if (error instanceof Error) {
-      return <div>Error : {error.message}</div>;
+      return <div>Error : {error.message} 1</div>;
     } else {
       return <div>Error : Unknown error</div>;
     }
