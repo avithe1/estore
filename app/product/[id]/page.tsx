@@ -5,6 +5,8 @@ import BackButton from "@/components/BackButton";
 import { Metadata } from "next";
 import { getProduct, getProducts, Product } from "@/lib/products";
 
+//export const dynamicParams = true;
+
 type Props = {
   params: Promise<{ id: number }>;
 };
@@ -47,21 +49,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-export async function generateStaticParams() {
-  try {
-    const products: Product[] = await getProducts();
-    return products.map((product) => ({
-      id: product.id.toString(),
-    }));
-  } catch (error) {
-    console.error("Error in generateStaticParams:", error);
-    // You can choose to re-throw the error to fail the build
-    throw error;
-    // Or return an empty array to skip generating these params,
-    // but this might lead to missing pages.
-    // return [];
-  }
-}
+// export async function generateStaticParams() {
+//   try {
+//     const products: Product[] = await getProducts();
+//     return products.map((product) => ({
+//       id: product.id.toString(),
+//     }));
+//   } catch (error) {
+//     console.error("Error in generateStaticParams:", error);
+//     // You can choose to re-throw the error to fail the build
+//     throw error;
+//     // Or return an empty array to skip generating these params,
+//     // but this might lead to missing pages.
+//     // return [];
+//   }
+// }
 
 const ProductDetailPage = async ({ params }: Props) => {
   const { id } = await params;
