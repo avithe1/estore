@@ -1,7 +1,8 @@
-'use server'
+"use server";
 import { isNumber, isString } from "./utils";
 
-const BASE_URL = "https://fakestoreapi.com/";
+//const BASE_URL = "https://fakestoreapi.com/";
+const BASE_URL = "https://api.escuelajs.co/api/v1/";
 
 export type Product = {
   id: number;
@@ -10,6 +11,17 @@ export type Product = {
   description: string;
   image: string;
   category: string;
+};
+
+export type ProductNewAPI = {
+  id: number;
+  title: string;
+  price: number;
+  description: string;
+  images: string[];
+  category: {
+    name: string;
+  };
 };
 
 export type CartItem = Product & {
@@ -39,14 +51,27 @@ function validateProductsResponse(data: unknown): data is ProductAPIResponse[] {
 
 export const getProducts = async (): Promise<Product[]> => {
   try {
-    const response = await fetch(BASE_URL + "products",{next:{revalidate:60000}});
+    const response = await fetch(BASE_URL + "products", {
+      next: { revalidate: 60000 },
+    });
     if (!response.ok) {
       throw new Error(`HTTP Error ${response.status}: ${response.statusText}`);
     }
 
-    let jsonData: unknown;
+    let jsonData: ProductNewAPI[];
+    let productjson: unknown;
     try {
       jsonData = await response.json();
+      productjson = jsonData.map((p) => {
+        return {
+          id: p.id,
+          title: p.title,
+          price: p.price,
+          description: p.description,
+          image: p.images[0],
+          category: p.category.name,
+        };
+      });
     } catch (error) {
       throw new Error(
         error instanceof Error
@@ -55,11 +80,11 @@ export const getProducts = async (): Promise<Product[]> => {
       );
     }
 
-    if (!validateProductsResponse(jsonData)) {
+    if (!validateProductsResponse(productjson)) {
       throw new Error("Invalid products data");
     }
 
-    return jsonData;
+    return productjson;
   } catch (error) {
     if (error instanceof Error) {
       throw error;
@@ -71,24 +96,35 @@ export const getProducts = async (): Promise<Product[]> => {
 
 export const getProduct = async (id: number): Promise<Product> => {
   try {
-    const response = await fetch(BASE_URL + "products/" + id.toString() , {next:{revalidate:60000}});
+    const response = await fetch(BASE_URL + "products/" + id.toString(), {
+      next: { revalidate: 60000 },
+    });
 
     if (!response.ok) {
       throw new Error("HTTP error. Failed to fetch product");
     }
 
-    let jsonData: unknown;
+    let jsonData: ProductNewAPI;
+    let productjson: unknown;
     try {
       jsonData = await response.json();
+      productjson = {
+        id: jsonData.id,
+        title: jsonData.title,
+        price: jsonData.price,
+        description: jsonData.description,
+        image: jsonData.images[0],
+        category: jsonData.category.name,
+      };
     } catch (e) {
       throw e;
     }
 
-    if (!validateProductResponse(jsonData)) {
+    if (!validateProductResponse(productjson)) {
       throw new Error("Invalid product data");
     }
 
-    return jsonData;
+    return productjson;
   } catch (e) {
     throw e;
   }

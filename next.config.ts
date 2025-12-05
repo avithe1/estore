@@ -7,7 +7,10 @@ const nextConfig: NextConfig = {
 module.exports = {
   images: {
     remotePatterns: [
-      new URL("https://fakestoreapi.com/**"),
+      //new URL("https://fakestoreapi.com/**"),
+      new URL("https://i.imgur.com/**"),
+      new URL("https://m.media-amazon.com/**"),
+      new URL("https://placehold.co/**")
     ],
   },
 };
