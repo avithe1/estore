@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     template: "%s | Estore",
     default: "Estore",
   },
-  description: "Estore developed with NextJS 15",
+  description: "Estore developed with NextJS 15 | Demonstrates Intercepting routes and Reduc toolkit",
 };
 
 export default function RootLayout({
