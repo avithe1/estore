@@ -1,6 +1,8 @@
 import ProductsCardSkeleton from "@/components/ProductCardsSkeleton";
 import ProductGrid from "@/components/ProductGrid";
 import { getProducts, Product } from "@/lib/products";
+import { Github } from "lucide-react";
+import Link from "next/link";
 import { Suspense } from "react";
 
 async function Products() {
@@ -34,7 +36,12 @@ export default async function Home() {
         </div>
       }
     >
-      <Products />
+      <div className="w-full flex flex-col min-h-screen">
+        <Products />
+        <div className="text-gray-600 text-sm w-full flex justify-center my-5">
+          <Link href="https://github.com/avithe1/estore">Github</Link>
+        </div>
+      </div>
     </Suspense>
   );
 }
