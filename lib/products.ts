@@ -1,5 +1,6 @@
 "use server";
 import { isNumber, isString } from "./utils";
+import { safeURLS } from "./utils";
 
 //const BASE_URL = "https://fakestoreapi.com/";
 const BASE_URL = "https://api.escuelajs.co/api/v1/";
@@ -68,7 +69,9 @@ export const getProducts = async (): Promise<Product[]> => {
           title: p.title,
           price: p.price,
           description: p.description,
-          image: p.images[0],
+          image: safeURLS.some((img) => p.images[0].startsWith(img))
+            ? p.images[0]
+            : "/shirt.jpeg",
           category: p.category.name,
         };
       });
@@ -96,6 +99,7 @@ export const getProducts = async (): Promise<Product[]> => {
 
 export const getProduct = async (id: number): Promise<Product> => {
   try {
+    console.log(BASE_URL + "products/" + id.toString());
     const response = await fetch(BASE_URL + "products/" + id.toString(), {
       next: { revalidate: 60000 },
     });
@@ -113,7 +117,9 @@ export const getProduct = async (id: number): Promise<Product> => {
         title: jsonData.title,
         price: jsonData.price,
         description: jsonData.description,
-        image: jsonData.images[0],
+        image: safeURLS.some((img) => jsonData.images[0].startsWith(img))
+          ? jsonData.images[0]
+          : "/shirt.jpeg",
         category: jsonData.category.name,
       };
     } catch (e) {

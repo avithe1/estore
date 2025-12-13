@@ -27,3 +27,9 @@ export function isValidDateString(dateString: string): boolean {
   const date = new Date(dateString);
   return !isNaN(date.getTime()) && date.toISOString() === dateString;
 }
+
+export const safeURLS = [
+  "https://i.imgur.com",
+  "https://m.media-amazon.com",
+  "https://placeimg.com",
+];
